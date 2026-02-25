@@ -1,0 +1,439 @@
+# WarzoneFishing Configuration
+# All rewards and settings are fully customizable!
+
+# ============================================
+# HEADHUNTING INTEGRATION
+# ============================================
+# If HeadHunting plugin is installed, players get better
+# fishing luck based on their HeadHunting level!
+#
+# Luck Bonus Per Level:
+#   Level 1:  +2.5%  rare item chance
+#   Level 7:  +17.5% rare item chance  
+#   Level 14: +35%   rare item chance
+#
+# Epic items get 1.25x this bonus
+# Legendary items get 1.5x this bonus
+#
+# Example at Level 14:
+#   - Rare items: +35% chance
+#   - Epic items: +43.75% chance
+#   - Legendary items: +52.5% chance
+# ============================================
+
+settings:
+  # Which claim plugin to use for warzone detection
+  # Options: factions, factionsuuid, worldguard, none
+  claim-plugin: factions
+  
+  # If using WorldGuard, specify the region name
+  worldguard-region: warzone
+  
+  # If claim-plugin is 'none', you can specify allowed worlds
+  allowed-worlds:
+    - world
+    - warzone_world
+  
+  # Drop item at hook location instead of giving directly to inventory
+  drop-at-hook: false
+  
+  # Title display settings (in ticks, 20 ticks = 1 second)
+  title-fade-in: 10
+  title-stay: 40
+  title-fade-out: 10
+  
+  # Action bar message shown when catching something (leave empty to disable)
+  # Placeholders: {player}, {item}, {rarity}
+  action-bar-message: "&a+1 &7{item}"
+
+# ============================================
+# REWARDS CONFIGURATION
+# ============================================
+# Each reward can have the following options:
+#
+# material: The Bukkit material name (required)
+# display-name: Custom item name with color codes
+# amount: Stack size (default: 1)
+# data: Data value for items like wool colors (default: 0)
+# lore: List of lore lines
+# enchantments: Map of enchantment name to level
+# chance: Weight for this reward (higher = more common)
+# rarity: Rarity tier (COMMON, UNCOMMON, RARE, EPIC, LEGENDARY)
+# title-message: Title text shown on screen
+# subtitle-message: Subtitle text shown below title
+# sound: Sound to play (use 1.8.8 sound names)
+# sound-pitch: Pitch of the sound (0.5 - 2.0)
+# sound-volume: Volume of the sound (0.0 - 1.0)
+# commands: List of commands to run (use {player} placeholder)
+# broadcast: Whether to broadcast when caught (true/false)
+# broadcast-message: Message to broadcast
+# ============================================
+
+rewards:
+  # ============ COMMON ITEMS ============
+  raw_fish:
+    material: RAW_FISH
+    display-name: "&7Common Fish"
+    amount: 1
+    lore:
+      - "&8Just a regular fish..."
+      - "&7Nothing special here."
+    chance: 50.0
+    rarity: COMMON
+    title-message: "&7You caught a fish!"
+    subtitle-message: "&fCommon Fish"
+    sound: SPLASH
+    sound-pitch: 1.0
+    sound-volume: 1.0
+
+  salmon:
+    material: RAW_FISH
+    data: 1
+    display-name: "&6Warzone Salmon"
+    amount: 1
+    lore:
+      - "&7A salmon from the warzone waters"
+    chance: 40.0
+    rarity: COMMON
+    title-message: "&6Fish Caught!"
+    subtitle-message: "&eWarzone Salmon"
+    sound: SPLASH
+    sound-pitch: 1.2
+    sound-volume: 1.0
+
+  clownfish:
+    material: RAW_FISH
+    data: 2
+    display-name: "&cTropical Fish"
+    amount: 1
+    lore:
+      - "&7A colorful tropical fish"
+    chance: 30.0
+    rarity: COMMON
+    title-message: "&cNice Catch!"
+    subtitle-message: "&eTropical Fish"
+    sound: SPLASH
+    sound-pitch: 1.5
+    sound-volume: 1.0
+
+  # ============ UNCOMMON ITEMS ============
+  iron_ingot:
+    material: IRON_INGOT
+    display-name: "&fSunken Iron"
+    amount: 3
+    lore:
+      - "&7Iron lost in battle..."
+      - "&7Recovered from the depths."
+    chance: 20.0
+    rarity: UNCOMMON
+    title-message: "&fMetal Found!"
+    subtitle-message: "&7Sunken Iron x3"
+    sound: NOTE_PLING
+    sound-pitch: 1.0
+    sound-volume: 1.0
+
+  golden_apple:
+    material: GOLDEN_APPLE
+    display-name: "&6Sunken Gapple"
+    amount: 1
+    lore:
+      - "&7Someone must have dropped this..."
+      - "&eYour lucky day!"
+    chance: 15.0
+    rarity: UNCOMMON
+    title-message: "&6Lucky Find!"
+    subtitle-message: "&eGolden Apple!"
+    sound: NOTE_PLING
+    sound-pitch: 1.5
+    sound-volume: 1.0
+
+  ender_pearl:
+    material: ENDER_PEARL
+    display-name: "&5Waterlogged Pearl"
+    amount: 2
+    lore:
+      - "&7Ender pearls found in the water"
+      - "&5Still functional!"
+    chance: 12.0
+    rarity: UNCOMMON
+    title-message: "&5Pearl Found!"
+    subtitle-message: "&dEnder Pearl x2"
+    sound: ENDERMAN_TELEPORT
+    sound-pitch: 1.0
+    sound-volume: 0.5
+
+  # ============ RARE ITEMS ============
+  diamond:
+    material: DIAMOND
+    display-name: "&bWarzone Diamond"
+    amount: 2
+    lore:
+      - "&7A diamond lost in the chaos"
+      - "&bShines bright despite the war"
+    chance: 8.0
+    rarity: RARE
+    title-message: "&b&lRAR E CATCH!"
+    subtitle-message: "&bDiamond x2!"
+    sound: LEVEL_UP
+    sound-pitch: 1.0
+    sound-volume: 1.0
+
+  god_apple:
+    material: GOLDEN_APPLE
+    data: 1
+    display-name: "&6&lEnchanted Golden Apple"
+    amount: 1
+    lore:
+      - "&7The legendary god apple!"
+      - "&6Found in warzone waters"
+      - "&eTruly a rare find!"
+    chance: 3.0
+    rarity: RARE
+    title-message: "&6&lGOD APPLE!"
+    subtitle-message: "&e&lIncredible Catch!"
+    sound: LEVEL_UP
+    sound-pitch: 1.5
+    sound-volume: 1.0
+    broadcast: true
+    broadcast-message: "&6&l[RARE] &e{player} &7fished up a &6God Apple&7!"
+
+  diamond_sword:
+    material: DIAMOND_SWORD
+    display-name: "&b&lBattleworn Blade"
+    lore:
+      - "&7A sword lost in battle"
+      - "&bStill sharp and ready"
+      - ""
+      - "&7&oFound in Warzone Waters"
+    enchantments:
+      DAMAGE_ALL: 3
+      DURABILITY: 2
+    chance: 5.0
+    rarity: RARE
+    title-message: "&b&lWEAPON FOUND!"
+    subtitle-message: "&bBattleworn Blade"
+    sound: ANVIL_LAND
+    sound-pitch: 1.0
+    sound-volume: 0.8
+
+  # ============ EPIC ITEMS ============
+  epic_helmet:
+    material: DIAMOND_HELMET
+    display-name: "&5&lSunken Warrior's Helm"
+    lore:
+      - "&5A legendary warrior's helmet"
+      - "&dLost to the warzone waters"
+      - ""
+      - "&7&oThe soul of a warrior lingers..."
+    enchantments:
+      PROTECTION_ENVIRONMENTAL: 4
+      DURABILITY: 3
+      THORNS: 2
+    chance: 2.0
+    rarity: EPIC
+    title-message: "&5&lEPIC FIND!"
+    subtitle-message: "&d&lSunken Warrior's Helm"
+    sound: WITHER_SPAWN
+    sound-pitch: 1.5
+    sound-volume: 0.5
+    broadcast: true
+    broadcast-message: "&5&l[EPIC] &d{player} &7fished up the &5Sunken Warrior's Helm&7!"
+
+  epic_chestplate:
+    material: DIAMOND_CHESTPLATE
+    display-name: "&5&lDrowned Knight's Armor"
+    lore:
+      - "&5Ancient armor from a fallen knight"
+      - "&dPreserved by the depths"
+      - ""
+      - "&7&oStill carries the knight's valor"
+    enchantments:
+      PROTECTION_ENVIRONMENTAL: 4
+      DURABILITY: 3
+    chance: 1.5
+    rarity: EPIC
+    title-message: "&5&lEPIC ARMOR!"
+    subtitle-message: "&d&lDrowned Knight's Armor"
+    sound: WITHER_SPAWN
+    sound-pitch: 1.2
+    sound-volume: 0.5
+    broadcast: true
+    broadcast-message: "&5&l[EPIC] &d{player} &7discovered &5Drowned Knight's Armor&7!"
+
+  # ============ LEGENDARY ITEMS ============
+  legendary_sword:
+    material: DIAMOND_SWORD
+    display-name: "&6&l✦ Poseidon's Trident ✦"
+    lore:
+      - "&6&lLEGENDARY"
+      - ""
+      - "&eThe weapon of the sea god himself"
+      - "&7Lost during an ancient war"
+      - ""
+      - "&6Ability: &eStrike your enemies"
+      - "&6with the fury of the ocean!"
+      - ""
+      - "&8&o「 Warzone Fishing Legendary 」"
+    enchantments:
+      DAMAGE_ALL: 5
+      FIRE_ASPECT: 2
+      KNOCKBACK: 2
+      DURABILITY: 3
+      LOOT_BONUS_MOBS: 3
+    chance: 0.5
+    rarity: LEGENDARY
+    title-message: "&6&l✦ LEGENDARY ✦"
+    subtitle-message: "&e&lPoseidon's Trident!"
+    sound: ENDERDRAGON_GROWL
+    sound-pitch: 0.8
+    sound-volume: 1.0
+    broadcast: true
+    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &7has obtained &6&lPoseidon's Trident&7 from the warzone waters!"
+    commands:
+      - "say {player} has found the legendary Poseidon's Trident!"
+
+  legendary_bow:
+    material: BOW
+    display-name: "&6&l✦ Artemis' Longbow ✦"
+    lore:
+      - "&6&lLEGENDARY"
+      - ""
+      - "&eThe bow of the goddess of hunt"
+      - "&7Arrows fly true and far"
+      - ""
+      - "&6Ability: &eNever miss your target"
+      - ""
+      - "&8&o「 Warzone Fishing Legendary 」"
+    enchantments:
+      ARROW_DAMAGE: 5
+      ARROW_INFINITE: 1
+      ARROW_KNOCKBACK: 2
+      DURABILITY: 3
+    chance: 0.5
+    rarity: LEGENDARY
+    title-message: "&6&l✦ LEGENDARY ✦"
+    subtitle-message: "&e&lArtemis' Longbow!"
+    sound: ENDERDRAGON_GROWL
+    sound-pitch: 1.0
+    sound-volume: 1.0
+    broadcast: true
+    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &7obtained &6&lArtemis' Longbow&7 from fishing!"
+    commands:
+      - "say {player} has found the legendary Artemis' Longbow!"
+
+  # ============ SPECIAL/JOKE ITEMS ============
+  old_boot:
+    material: LEATHER_BOOTS
+    display-name: "&8Soggy Old Boot"
+    lore:
+      - "&7Someone's old boot..."
+      - "&8Smells like fish."
+      - ""
+      - "&c&oWhy would anyone want this?"
+    chance: 25.0
+    rarity: COMMON
+    title-message: "&8Ew..."
+    subtitle-message: "&7An old boot?"
+    sound: VILLAGER_NO
+    sound-pitch: 0.5
+    sound-volume: 1.0
+
+  treasure_map:
+    material: MAP
+    display-name: "&e&lMysterious Treasure Map"
+    lore:
+      - "&7An old map with markings..."
+      - "&eX marks the spot!"
+      - ""
+      - "&7&oMaybe it leads somewhere?"
+    chance: 5.0
+    rarity: RARE
+    title-message: "&e&lTreasure Map!"
+    subtitle-message: "&7What secrets does it hold?"
+    sound: NOTE_PLING
+    sound-pitch: 2.0
+    sound-volume: 1.0
+    commands:
+      - "tell {player} &eYou found a mysterious map... (Hint: Check coords X:100 Z:100)"
+
+  # ============ CURRENCY/ECONOMY ITEMS ============
+  money_pouch_small:
+    material: GOLD_NUGGET
+    display-name: "&aSmall Coin Pouch"
+    amount: 5
+    lore:
+      - "&7A small pouch of coins"
+      - "&aWorth some gold!"
+    chance: 15.0
+    rarity: UNCOMMON
+    title-message: "&aMoney Found!"
+    subtitle-message: "&7Small Coin Pouch"
+    sound: NOTE_PLING
+    sound-pitch: 1.0
+    sound-volume: 1.0
+    # Uncomment below if you have an economy plugin
+    # commands:
+    #   - "eco give {player} 100"
+
+  money_pouch_large:
+    material: GOLD_INGOT
+    display-name: "&6Large Coin Pouch"
+    amount: 3
+    lore:
+      - "&7A large pouch of coins"
+      - "&6Quite valuable!"
+    chance: 5.0
+    rarity: RARE
+    title-message: "&6&lJackpot!"
+    subtitle-message: "&eLarge Coin Pouch"
+    sound: LEVEL_UP
+    sound-pitch: 1.0
+    sound-volume: 1.0
+    # Uncomment below if you have an economy plugin
+    # commands:
+    #   - "eco give {player} 500"
+
+# ============================================
+# ADDING YOUR OWN REWARDS
+# ============================================
+# To add a new reward, copy this template:
+#
+#   your_reward_name:
+#     material: DIAMOND
+#     display-name: "&b&lYour Item Name"
+#     amount: 1
+#     data: 0
+#     lore:
+#       - "&7First line of lore"
+#       - "&7Second line of lore"
+#     enchantments:
+#       DAMAGE_ALL: 5
+#       DURABILITY: 3
+#     chance: 10.0
+#     rarity: RARE
+#     title-message: "&b&lTitle Text!"
+#     subtitle-message: "&7Subtitle text"
+#     sound: LEVEL_UP
+#     sound-pitch: 1.0
+#     sound-volume: 1.0
+#     broadcast: false
+#     broadcast-message: "&7{player} caught {item}!"
+#     commands:
+#       - "say {player} got something!"
+#
+# ============================================
+# SOUNDS FOR 1.8.8
+# ============================================
+# Common sounds you can use:
+# - LEVEL_UP (ding sound)
+# - NOTE_PLING (note block)
+# - ENDERDRAGON_GROWL (epic legendary sound)
+# - WITHER_SPAWN (epic sound)
+# - ANVIL_LAND (heavy clunk)
+# - SPLASH (water splash)
+# - ENDERMAN_TELEPORT
+# - VILLAGER_NO / VILLAGER_YES
+# - FIREWORK_BLAST
+# - CLICK
+# - CHEST_OPEN / CHEST_CLOSE
+# ============================================
