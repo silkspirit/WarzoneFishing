@@ -167,6 +167,7 @@ public class RewardManager {
     /**
      * Get random reward with HeadHunting level bonus
      * Higher levels boost chances for RARE, EPIC, and LEGENDARY items
+     * Guardian mask with MASK_FISHING_REWARDS ability unlocks special masked rewards
      */
     public FishingReward getRandomReward(Player player) {
         if (this.rewards.isEmpty() || this.totalWeight <= 0.0) {
@@ -177,6 +178,9 @@ public class RewardManager {
         int hhLevel = (player != null) ? getHeadHuntingLevel(player) : 0;
         double luckMultiplier = getLuckMultiplier(hhLevel);
         
+        // Check if player has mask fishing rewards ability (Guardian mask level 5)
+        boolean hasMaskFishingRewards = (player != null) && hasMaskFishingRewardsAbility(player);
+        
         // Calculate adjusted weights
         double adjustedTotalWeight = 0.0;
         List<Double> adjustedWeights = new ArrayList<>();
@@ -184,8 +188,18 @@ public class RewardManager {
         for (FishingReward reward : this.rewards) {
             double weight = reward.getChance();
             
-            // Apply luck bonus to rare+ items
+            // Check if this is a mask-only reward
             String rarity = reward.getRarity().toUpperCase();
+            boolean isMaskedReward = "MASKED".equalsIgnoreCase(rarity) || 
+                                     reward.getId().toLowerCase().contains("masked");
+            
+            // Skip masked rewards if player doesn't have the ability
+            if (isMaskedReward && !hasMaskFishingRewards) {
+                adjustedWeights.add(0.0);
+                continue;
+            }
+            
+            // Apply luck bonus to rare+ items
             if (luckMultiplier > 1.0) {
                 switch (rarity) {
                     case "RARE":
@@ -195,13 +209,18 @@ public class RewardManager {
                         weight *= (luckMultiplier * 1.25); // Extra bonus for epic
                         break;
                     case "LEGENDARY":
-                        weight *= (luckMultiplier * 1.5); // Even more for legendary
+                    case "MASKED":
+                        weight *= (luckMultiplier * 1.5); // Even more for legendary/masked
                         break;
                 }
             }
             
             adjustedWeights.add(weight);
             adjustedTotalWeight += weight;
+        }
+        
+        if (adjustedTotalWeight <= 0) {
+            return this.rewards.get(0); // Fallback
         }
         
         // Roll with adjusted weights
@@ -216,6 +235,31 @@ public class RewardManager {
         }
         
         return this.rewards.get(this.rewards.size() - 1);
+    }
+    
+    /**
+     * Check if player has MASK_FISHING_REWARDS ability (Guardian mask level 5)
+     */
+    private boolean hasMaskFishingRewardsAbility(Player player) {
+        if (!headHuntingEnabled || headHuntingPlugin == null) {
+            return false;
+        }
+        
+        try {
+            // Try to call AbilityHandler.hasMaskFishingRewards
+            Class<?> hhClass = headHuntingPlugin.getClass();
+            Object abilityHandler = hhClass.getMethod("getAbilityHandler").invoke(headHuntingPlugin);
+            if (abilityHandler != null) {
+                Boolean hasAbility = (Boolean) abilityHandler.getClass()
+                    .getMethod("hasMaskFishingRewards", Player.class)
+                    .invoke(abilityHandler, player);
+                return hasAbility != null && hasAbility;
+            }
+        } catch (Exception e) {
+            // Silent fail
+        }
+        
+        return false;
     }
 
     public int getRewardCount() {
