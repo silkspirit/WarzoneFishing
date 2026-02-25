@@ -1,0 +1,9 @@
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/utils/SkullUtils.java
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/utils/MessageUtils.java
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/WarzoneFishing.java
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/managers/RewardManager.java
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/commands/WarzoneFishingCommand.java
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/listeners/FishingListener.java
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/nbt/NBTHelper.java
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/utils/TitleAPI.java
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/models/FishingReward.java

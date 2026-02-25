@@ -1,0 +1,11 @@
+com/warzonefishing/utils/TitleAPI.class
+com/warzonefishing/managers/RewardManager.class
+com/warzonefishing/nbt/NBTHelper.class
+com/warzonefishing/utils/TitleAPI$TitleAction.class
+com/warzonefishing/models/FishingReward.class
+com/warzonefishing/models/FishingReward$RewardType.class
+com/warzonefishing/utils/MessageUtils.class
+com/warzonefishing/commands/WarzoneFishingCommand.class
+com/warzonefishing/WarzoneFishing.class
+com/warzonefishing/listeners/FishingListener.class
+com/warzonefishing/utils/SkullUtils.class

@@ -1,0 +1,35 @@
+name: WarzoneFishing
+version: 2.0.0
+main: com.warzonefishing.WarzoneFishing
+author: Warzone Team
+description: Custom fishing rewards in warzone areas with NBT-based rarity system
+api-version: 1.8
+
+softdepend:
+  - Factions
+  - FactionsUUID
+  - WorldGuard
+  - Vault
+  - PhoenixCrates
+  - ShopGUIPlus
+
+commands:
+  warzonefishing:
+    description: Main WarzoneFishing command
+    usage: /warzonefishing <reload|list|give|test|preview>
+    aliases: [wf, wzf]
+    permission: warzonefishing.use
+
+permissions:
+  warzonefishing.use:
+    description: Basic access to warzonefishing commands
+    default: true
+  warzonefishing.fish:
+    description: Allows fishing in warzone for rewards
+    default: true
+  warzonefishing.admin:
+    description: Admin commands (reload, give, etc.)
+    default: op
+  warzonefishing.bypass.cooldown:
+    description: Bypass fishing cooldown
+    default: op
