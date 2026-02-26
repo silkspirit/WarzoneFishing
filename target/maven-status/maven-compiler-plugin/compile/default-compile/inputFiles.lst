@@ -6,4 +6,6 @@
 /root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/listeners/FishingListener.java
 /root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/nbt/NBTHelper.java
 /root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/utils/TitleAPI.java
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/gui/FishingGUI.java
+/root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/hooks/HeadHuntingHook.java
 /root/clawd/WarzoneFishing/src/main/java/com/warzonefishing/models/FishingReward.java

@@ -1,6 +1,8 @@
 package com.warzonefishing;
 
 import com.warzonefishing.commands.WarzoneFishingCommand;
+import com.warzonefishing.gui.FishingGUI;
+import com.warzonefishing.hooks.HeadHuntingHook;
 import com.warzonefishing.listeners.FishingListener;
 import com.warzonefishing.managers.RewardManager;
 import com.warzonefishing.utils.MessageUtils;
@@ -22,6 +24,8 @@ public class WarzoneFishing extends JavaPlugin {
     
     private static WarzoneFishing instance;
     private RewardManager rewardManager;
+    private FishingGUI fishingGUI;
+    private HeadHuntingHook headHuntingHook;
     
     @Override
     public void onEnable() {
@@ -33,6 +37,9 @@ public class WarzoneFishing extends JavaPlugin {
         // Initialize the reward manager and load rewards
         rewardManager = new RewardManager(this);
         rewardManager.loadRewards();
+        
+        // Initialize GUI manager
+        fishingGUI = new FishingGUI(this);
         
         // Register event listeners
         getServer().getPluginManager().registerEvents(new FishingListener(this), this);
@@ -50,6 +57,9 @@ public class WarzoneFishing extends JavaPlugin {
         
         // Check for soft dependencies
         checkDependencies();
+        
+        // Hook into HeadHunting for level-based rewards
+        headHuntingHook = new HeadHuntingHook();
     }
     
     @Override
@@ -95,6 +105,22 @@ public class WarzoneFishing extends JavaPlugin {
      */
     public RewardManager getRewardManager() {
         return rewardManager;
+    }
+    
+    /**
+     * Get the fishing GUI manager
+     * @return FishingGUI instance
+     */
+    public FishingGUI getFishingGUI() {
+        return fishingGUI;
+    }
+    
+    /**
+     * Get the HeadHunting hook
+     * @return HeadHuntingHook instance
+     */
+    public HeadHuntingHook getHeadHuntingHook() {
+        return headHuntingHook;
     }
     
     /**

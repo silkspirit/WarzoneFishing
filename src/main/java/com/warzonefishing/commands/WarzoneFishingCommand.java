@@ -32,7 +32,7 @@ public class WarzoneFishingCommand implements CommandExecutor, TabCompleter {
     
     private final WarzoneFishing plugin;
     private final List<String> subCommands = Arrays.asList(
-            "reload", "list", "give", "test", "preview", "info"
+            "menu", "reload", "list", "give", "test", "preview", "info"
     );
     private final List<String> rarities = Arrays.asList(
             "COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY"
@@ -44,14 +44,22 @@ public class WarzoneFishingCommand implements CommandExecutor, TabCompleter {
     
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        // No args - open GUI for players, show help for console
         if (args.length == 0) {
-            sendHelp(sender, label);
+            if (sender instanceof Player) {
+                plugin.getFishingGUI().openMainMenu((Player) sender);
+            } else {
+                sendHelp(sender, label);
+            }
             return true;
         }
         
         String subCommand = args[0].toLowerCase();
         
         switch (subCommand) {
+            case "menu":
+                handleMenu(sender);
+                break;
             case "reload":
                 handleReload(sender);
                 break;
@@ -83,6 +91,7 @@ public class WarzoneFishingCommand implements CommandExecutor, TabCompleter {
      */
     private void sendHelp(CommandSender sender, String label) {
         sender.sendMessage(MessageUtils.createHeader("WarzoneFishing"));
+        sender.sendMessage(MessageUtils.color("&b/" + label + " &7- Open fish encyclopedia"));
         sender.sendMessage(MessageUtils.color("&b/" + label + " reload &7- Reload configuration"));
         sender.sendMessage(MessageUtils.color("&b/" + label + " list [rarity] &7- List rewards"));
         sender.sendMessage(MessageUtils.color("&b/" + label + " give <player> <reward> &7- Give reward"));
@@ -90,6 +99,19 @@ public class WarzoneFishingCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage(MessageUtils.color("&b/" + label + " preview <reward> &7- Preview reward"));
         sender.sendMessage(MessageUtils.color("&b/" + label + " info &7- Plugin information"));
         sender.sendMessage(MessageUtils.createFooter());
+    }
+    
+    /**
+     * Handle menu command - open encyclopedia GUI
+     */
+    private void handleMenu(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(MessageUtils.color(MessageUtils.PREFIX + 
+                    "&cThis command requires a player!"));
+            return;
+        }
+        
+        plugin.getFishingGUI().openMainMenu((Player) sender);
     }
     
     /**

@@ -64,6 +64,10 @@ public class FishingReward {
     private final boolean unbreakable;
     private final boolean glow;
     
+    // Level requirements (for HeadHunting integration)
+    private final int requiredLevel;
+    private final boolean requiresGuardianMask;
+    
     /**
      * Constructor with all properties
      */
@@ -91,7 +95,9 @@ public class FishingReward {
             String broadcastMessage,
             boolean hideFlags,
             boolean unbreakable,
-            boolean glow
+            boolean glow,
+            int requiredLevel,
+            boolean requiresGuardianMask
     ) {
         this.id = id;
         this.type = type;
@@ -117,6 +123,8 @@ public class FishingReward {
         this.hideFlags = hideFlags;
         this.unbreakable = unbreakable;
         this.glow = glow;
+        this.requiredLevel = requiredLevel;
+        this.requiresGuardianMask = requiresGuardianMask;
     }
     
     // ============ Getters ============
@@ -169,6 +177,24 @@ public class FishingReward {
         return broadcast;
     }
     
+    public boolean isBroadcast() {
+        return broadcast;
+    }
+    
+    /**
+     * Get the sell value from NBT data
+     * @return Sell value or 0 if not set
+     */
+    public int getSellValue() {
+        if (nbtData != null && nbtData.containsKey("sell_value")) {
+            Object value = nbtData.get("sell_value");
+            if (value instanceof Number) {
+                return ((Number) value).intValue();
+            }
+        }
+        return 0;
+    }
+    
     public String getBroadcastMessage() {
         return MessageUtils.color(broadcastMessage);
     }
@@ -179,6 +205,14 @@ public class FishingReward {
     
     public String getDisplayName() {
         return displayName;
+    }
+    
+    public int getRequiredLevel() {
+        return requiredLevel;
+    }
+    
+    public boolean requiresGuardianMask() {
+        return requiresGuardianMask;
     }
     
     /**

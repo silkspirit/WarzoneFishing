@@ -142,6 +142,10 @@ public class RewardManager {
         boolean unbreakable = section.getBoolean("unbreakable", false);
         boolean glow = section.getBoolean("glow", false);
         
+        // Level requirements (for HeadHunting integration)
+        int requiredLevel = section.getInt("required-level", 0);
+        boolean requiresGuardianMask = section.getBoolean("requires-guardian-mask", false);
+        
         // Validate chance
         if (chance <= 0) {
             plugin.getLogger().warning("Reward '" + id + "' has invalid chance " + chance + ", skipping.");
@@ -153,7 +157,8 @@ public class RewardManager {
                 chance, rarity, nbtData, skullTexture, skullOwner,
                 titleMessage, subtitleMessage, sound, soundPitch, soundVolume,
                 commands, broadcast, broadcastMessage,
-                hideFlags, unbreakable, glow
+                hideFlags, unbreakable, glow,
+                requiredLevel, requiresGuardianMask
         );
     }
     
