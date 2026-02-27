@@ -1,0 +1,447 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# Warzone Fishing Shop - ShopGUIPlus Configuration
+# Sell your catches here!
+# ═══════════════════════════════════════════════════════════════════════════
+
+shop-name: "&b&lWarzone Fishing Shop"
+shop-rows: 6
+
+# Fill empty slots
+fill-item:
+  material: STAINED_GLASS_PANE
+  data: 15
+  name: " "
+
+items:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # COMMON FISH (Row 1)
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  common_cod:
+    slot: 10
+    material: RAW_FISH
+    data: 0
+    name: "&7Common Cod"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &fCommon"
+      - ""
+      - "&7A basic fish from the"
+      - "&7warzone waters."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$5"
+    sellPrice: 5
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "common"
+
+  common_salmon:
+    slot: 11
+    material: RAW_FISH
+    data: 1
+    name: "&7Common Salmon"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &fCommon"
+      - ""
+      - "&7A simple salmon, fresh"
+      - "&7from the depths."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$8"
+    sellPrice: 8
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "common"
+
+  old_boot:
+    slot: 12
+    material: LEATHER_BOOTS
+    name: "&8Soggy Old Boot"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &8Junk"
+      - ""
+      - "&7Someone's lost boot..."
+      - "&8Smells terrible."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$1"
+    sellPrice: 1
+    nbt:
+      warzone_junk: true
+
+  fish_bones:
+    slot: 13
+    material: BONE
+    name: "&7Fish Bones"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &fCommon"
+      - ""
+      - "&7Ancient bones from"
+      - "&7long-dead fish."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$3"
+    sellPrice: 3
+    nbt:
+      warzone_junk: true
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # UNCOMMON FISH (Row 2)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  uncommon_cod:
+    slot: 19
+    material: RAW_FISH
+    data: 0
+    name: "&aQuality Cod"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &aUncommon"
+      - ""
+      - "&7A well-fed, healthy cod."
+      - "&aLarger than normal!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$25"
+    sellPrice: 25
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "uncommon"
+
+  uncommon_salmon:
+    slot: 20
+    material: RAW_FISH
+    data: 1
+    name: "&aPrime Salmon"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &aUncommon"
+      - ""
+      - "&7A premium salmon."
+      - "&aFresh and healthy!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$35"
+    sellPrice: 35
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "uncommon"
+
+  tropical_fish:
+    slot: 21
+    material: RAW_FISH
+    data: 2
+    name: "&eTropical Fish"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &aUncommon"
+      - ""
+      - "&7A colorful tropical fish."
+      - "&eRare in these waters!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$40"
+    sellPrice: 40
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "uncommon"
+
+  sunken_iron:
+    slot: 22
+    material: IRON_INGOT
+    name: "&fSunken Iron"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &aUncommon"
+      - ""
+      - "&7Iron lost in battle..."
+      - "&7Recovered from the depths."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$60"
+    sellPrice: 60
+    nbt:
+      warzone_treasure: true
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # RARE FISH (Row 3)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  rare_cod:
+    slot: 28
+    material: RAW_FISH
+    data: 0
+    name: "&3&lPrize Cod"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
+      - ""
+      - "&7An exceptional specimen!"
+      - "&3Trophy quality fish"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$100"
+    sellPrice: 100
+    glow: true
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "rare"
+
+  rare_salmon:
+    slot: 29
+    material: RAW_FISH
+    data: 1
+    name: "&3&lKing Salmon"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
+      - ""
+      - "&7The king of salmon!"
+      - "&3Highly sought after"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$120"
+    sellPrice: 120
+    glow: true
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "rare"
+
+  pufferfish:
+    slot: 30
+    material: RAW_FISH
+    data: 3
+    name: "&3Warzone Pufferfish"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
+      - ""
+      - "&7A dangerous delicacy"
+      - "&cHandle with care!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$80"
+    sellPrice: 80
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "rare"
+
+  warzone_diamond:
+    slot: 31
+    material: DIAMOND
+    name: "&bWarzone Diamond"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
+      - ""
+      - "&7A diamond lost in the chaos"
+      - "&bShines bright despite the war"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$250"
+    sellPrice: 250
+    nbt:
+      warzone_treasure: true
+      warzone_rarity: "rare"
+
+  golden_apple:
+    slot: 32
+    material: GOLDEN_APPLE
+    name: "&6Sunken Gapple"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
+      - ""
+      - "&7Someone dropped this..."
+      - "&eYour lucky day!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$200"
+    sellPrice: 200
+    nbt:
+      warzone_treasure: true
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # EPIC FISH (Row 4)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  epic_cod:
+    slot: 37
+    material: RAW_FISH
+    data: 0
+    name: "&d&lMythical Cod"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &dEPIC"
+      - ""
+      - "&dA fish of legend!"
+      - "&7Said to grant luck to those"
+      - "&7who catch it."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$500"
+    sellPrice: 500
+    glow: true
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "epic"
+
+  epic_salmon:
+    slot: 38
+    material: RAW_FISH
+    data: 1
+    name: "&d&lEmperor Salmon"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &dEPIC"
+      - ""
+      - "&dThe emperor of all salmon!"
+      - "&7Radiates with power."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$600"
+    sellPrice: 600
+    glow: true
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "epic"
+
+  god_apple:
+    slot: 39
+    material: GOLDEN_APPLE
+    data: 1
+    name: "&6&lEnchanted Golden Apple"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &dEPIC"
+      - ""
+      - "&7The legendary god apple!"
+      - "&6Found in warzone waters"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$1,500"
+    sellPrice: 1500
+    nbt:
+      warzone_treasure: true
+      warzone_rarity: "epic"
+
+  nether_star_fragment:
+    slot: 40
+    material: NETHER_STAR
+    name: "&d&lStar of the Depths"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &dEPIC"
+      - ""
+      - "&dA star that fell into the ocean"
+      - "&7Radiates with cosmic energy"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$2,500"
+    sellPrice: 2500
+    nbt:
+      warzone_treasure: true
+      warzone_rarity: "epic"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # LEGENDARY FISH (Row 5)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  legendary_cod:
+    slot: 46
+    material: RAW_FISH
+    data: 0
+    name: "&6&l✦ Divine Cod ✦"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &6&lLEGENDARY"
+      - ""
+      - "&eA fish blessed by the gods!"
+      - "&7Those who possess it are"
+      - "&7said to have infinite luck."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$5,000"
+    sellPrice: 5000
+    glow: true
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "legendary"
+
+  legendary_salmon:
+    slot: 47
+    material: RAW_FISH
+    data: 1
+    name: "&6&l✦ Poseidon's Salmon ✦"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &6&lLEGENDARY"
+      - ""
+      - "&eThe personal fish of Poseidon!"
+      - "&7Swam through the depths"
+      - "&7of the ocean god's realm."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$6,000"
+    sellPrice: 6000
+    glow: true
+    nbt:
+      warzone_fish: true
+      warzone_rarity: "legendary"
+
+  poseidons_trident:
+    slot: 48
+    material: DIAMOND_SWORD
+    name: "&6&l✦ Poseidon's Trident ✦"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &6&lLEGENDARY"
+      - ""
+      - "&eThe weapon of the sea god"
+      - "&7Lost during an ancient war"
+      - ""
+      - "&6Ability: &eStrike with ocean fury!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$25,000"
+    sellPrice: 25000
+    glow: true
+    nbt:
+      warzone_legendary: true
+      warzone_item: "poseidons_trident"
+
+  golden_fish_trophy:
+    slot: 49
+    material: SKULL_ITEM
+    data: 3
+    skull-texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjIxNjY4ZWY3Y2I3OWRkOWMyMmNlM2QxZjNmNGNiNmUyNTU5ODkzYjZkZjRhNDY5NTE0ZTY2N2MxNmFhNCJ9fX0="
+    name: "&6&l✦ Golden Fish Trophy ✦"
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &6&lLEGENDARY"
+      - ""
+      - "&eA golden fish trophy!"
+      - "&7Display of a master angler."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&aSell Price: &f$10,000"
+    sellPrice: 10000
+    nbt:
+      warzone_trophy: true
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # NAVIGATION
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  close:
+    slot: 53
+    material: BARRIER
+    name: "&c&lClose Shop"
+    lore:
+      - "&7Click to close the shop"
+    commands:
+      - "close"
