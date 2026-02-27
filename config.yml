@@ -17,11 +17,17 @@
 # ============================================
 
 settings:
-  claim-plugin: factions
-  worldguard-region: warzone
+  # Use "worldguard" to ONLY allow fishing in a specific WorldGuard region
+  # Use "factions" to allow in Factions warzone claims
+  # Use "none" to allow in all configured worlds
+  claim-plugin: worldguard
+  
+  # The EXACT WorldGuard region name where fishing rewards work
+  # Create this region around your fishing area only (not spawn!)
+  worldguard-region: fishing_zone
+  
   allowed-worlds:
     - world
-    - warzone_world
   drop-at-hook: false
   title-fade-in: 10
   title-stay: 40
