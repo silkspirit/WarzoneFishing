@@ -1,0 +1,421 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# WARZONE FISHING SHOP - Sell your catches here!
+# ═══════════════════════════════════════════════════════════════════════════
+fishing:
+  name: "&b&lWarzone Fishing Shop (page %page%)"
+  size: 54
+  fillItem:
+    material: STAINED_GLASS_PANE
+    damage: 15
+    name: " "
+  items:
+    # ═══════════════════════════════════════════════════════════════════════════
+    # COMMON FISH (Row 1)
+    # ═══════════════════════════════════════════════════════════════════════════
+    1:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 0
+        name: "&7Common Cod"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &fCommon"
+          - ""
+          - "&7A basic fish from the"
+          - "&7warzone waters."
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&e&oWarzone Fishing"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"common\"}"
+      sellPrice: 5
+      slot: 10
+    2:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 1
+        name: "&7Common Salmon"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &fCommon"
+          - ""
+          - "&7A simple salmon, fresh"
+          - "&7from the depths."
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&e&oWarzone Fishing"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"common\"}"
+      sellPrice: 8
+      slot: 11
+    3:
+      type: item
+      item:
+        material: LEATHER_BOOTS
+        quantity: 1
+        name: "&8Soggy Old Boot"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &8Junk"
+          - ""
+          - "&7Someone's lost boot..."
+          - "&8Smells terrible."
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+        nbt: "{warzone_junk:1b}"
+      sellPrice: 1
+      slot: 12
+    4:
+      type: item
+      item:
+        material: BONE
+        quantity: 1
+        name: "&7Fish Bones"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &fCommon"
+          - ""
+          - "&7Ancient bones from"
+          - "&7long-dead fish."
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+        nbt: "{warzone_junk:1b}"
+      sellPrice: 3
+      slot: 13
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # UNCOMMON FISH (Row 2)
+    # ═══════════════════════════════════════════════════════════════════════════
+    5:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 0
+        name: "&aQuality Cod"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &aUncommon"
+          - ""
+          - "&7A well-fed, healthy cod."
+          - "&aLarger than normal!"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&a&oUncommon Warzone Fish"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"uncommon\"}"
+      sellPrice: 25
+      slot: 19
+    6:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 1
+        name: "&aPrime Salmon"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &aUncommon"
+          - ""
+          - "&7A premium salmon."
+          - "&aFresh and healthy!"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&a&oUncommon Warzone Fish"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"uncommon\"}"
+      sellPrice: 35
+      slot: 20
+    7:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 2
+        name: "&eTropical Fish"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &aUncommon"
+          - ""
+          - "&7A colorful tropical fish."
+          - "&eRare in these waters!"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&a&oUncommon Warzone Fish"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"uncommon\"}"
+      sellPrice: 40
+      slot: 21
+    8:
+      type: item
+      item:
+        material: IRON_INGOT
+        quantity: 1
+        name: "&fSunken Iron"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &aUncommon"
+          - ""
+          - "&7Iron lost in battle..."
+          - "&7Recovered from the depths."
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+        nbt: "{warzone_treasure:1b}"
+      sellPrice: 60
+      slot: 22
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # RARE FISH (Row 3)
+    # ═══════════════════════════════════════════════════════════════════════════
+    9:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 0
+        name: "&3&lPrize Cod"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &3Rare"
+          - ""
+          - "&7An exceptional specimen!"
+          - "&3Trophy quality fish"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&3&oRare Warzone Fish"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"rare\"}"
+        glow: true
+      sellPrice: 100
+      slot: 28
+    10:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 1
+        name: "&3&lKing Salmon"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &3Rare"
+          - ""
+          - "&7The king of salmon!"
+          - "&3Highly sought after"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&3&oRare Warzone Fish"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"rare\"}"
+        glow: true
+      sellPrice: 120
+      slot: 29
+    11:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 3
+        name: "&3Warzone Pufferfish"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &3Rare"
+          - ""
+          - "&7A dangerous delicacy"
+          - "&cHandle with care!"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&3&oRare Warzone Fish"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"rare\"}"
+      sellPrice: 80
+      slot: 30
+    12:
+      type: item
+      item:
+        material: DIAMOND
+        quantity: 1
+        name: "&bWarzone Diamond"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &3Rare"
+          - ""
+          - "&7A diamond lost in the chaos"
+          - "&bShines bright despite the war"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+        nbt: "{warzone_treasure:1b,warzone_rarity:\"rare\"}"
+      sellPrice: 250
+      slot: 31
+    13:
+      type: item
+      item:
+        material: GOLDEN_APPLE
+        quantity: 1
+        name: "&6Sunken Gapple"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &3Rare"
+          - ""
+          - "&7Someone dropped this..."
+          - "&eYour lucky day!"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+        nbt: "{warzone_treasure:1b}"
+      sellPrice: 200
+      slot: 32
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # EPIC FISH (Row 4)
+    # ═══════════════════════════════════════════════════════════════════════════
+    14:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 0
+        name: "&d&lMythical Cod"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &dEPIC"
+          - ""
+          - "&dA fish of legend!"
+          - "&7Said to grant luck to those"
+          - "&7who catch it."
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&d&oEpic Warzone Fish"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"epic\"}"
+        glow: true
+      sellPrice: 500
+      slot: 37
+    15:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 1
+        name: "&d&lEmperor Salmon"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &dEPIC"
+          - ""
+          - "&dThe emperor of all salmon!"
+          - "&7Radiates with power."
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&d&oEpic Warzone Fish"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"epic\"}"
+        glow: true
+      sellPrice: 600
+      slot: 38
+    16:
+      type: item
+      item:
+        material: GOLDEN_APPLE
+        quantity: 1
+        damage: 1
+        name: "&6&lEnchanted Golden Apple"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &dEPIC"
+          - ""
+          - "&7The legendary god apple!"
+          - "&6Found in warzone waters"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+        nbt: "{warzone_treasure:1b,warzone_rarity:\"epic\"}"
+      sellPrice: 1500
+      slot: 39
+    17:
+      type: item
+      item:
+        material: NETHER_STAR
+        quantity: 1
+        name: "&d&lStar of the Depths"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &dEPIC"
+          - ""
+          - "&dA star that fell into the ocean"
+          - "&7Radiates with cosmic energy"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+        nbt: "{warzone_treasure:1b,warzone_rarity:\"epic\"}"
+      sellPrice: 2500
+      slot: 40
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # LEGENDARY FISH (Row 5)
+    # ═══════════════════════════════════════════════════════════════════════════
+    18:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 0
+        name: "&6&l✦ Divine Cod ✦"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &6&lLEGENDARY"
+          - ""
+          - "&eA fish blessed by the gods!"
+          - "&7Those who possess it are"
+          - "&7said to have infinite luck."
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&8&o「 Warzone Fishing Legendary 」"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"legendary\"}"
+        glow: true
+      sellPrice: 5000
+      slot: 46
+    19:
+      type: item
+      item:
+        material: RAW_FISH
+        quantity: 1
+        damage: 1
+        name: "&6&l✦ Poseidon's Salmon ✦"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &6&lLEGENDARY"
+          - ""
+          - "&eThe personal fish of Poseidon!"
+          - "&7Swam through the depths"
+          - "&7of the ocean god's realm."
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&8&o「 Warzone Fishing Legendary 」"
+        nbt: "{warzone_fish:1b,warzone_rarity:\"legendary\"}"
+        glow: true
+      sellPrice: 6000
+      slot: 47
+    20:
+      type: item
+      item:
+        material: DIAMOND_SWORD
+        quantity: 1
+        name: "&6&l✦ Poseidon's Trident ✦"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &6&lLEGENDARY"
+          - ""
+          - "&eThe weapon of the sea god"
+          - "&7Lost during an ancient war"
+          - ""
+          - "&6Ability: &eStrike with ocean fury!"
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&8&o「 Warzone Fishing Legendary 」"
+        nbt: "{warzone_legendary:1b,warzone_item:\"poseidons_trident\"}"
+        glow: true
+      sellPrice: 25000
+      slot: 48
+    21:
+      type: item
+      item:
+        material: SKULL_ITEM
+        quantity: 1
+        damage: 3
+        name: "&6&l✦ Golden Fish Trophy ✦"
+        lore:
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - "&7Rarity: &6&lLEGENDARY"
+          - ""
+          - "&eA golden fish trophy!"
+          - "&7Display of a master angler."
+          - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&8&o「 Warzone Fishing Trophy 」"
+        nbt: "{warzone_trophy:1b}"
+        skull: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjIxNjY4ZWY3Y2I3OWRkOWMyMmNlM2QxZjNmNGNiNmUyNTU5ODkzYjZkZjRhNDY5NTE0ZTY2N2MxNmFhNCJ9fX0="
+      sellPrice: 10000
+      slot: 49
