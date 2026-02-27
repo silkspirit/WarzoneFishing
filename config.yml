@@ -23,8 +23,7 @@ settings:
   claim-plugin: worldguard
   
   # The EXACT WorldGuard region name where fishing rewards work
-  # Create this region around your fishing area only (not spawn!)
-  worldguard-region: fishing_zone
+  worldguard-region: warzone
   
   allowed-worlds:
     - world
