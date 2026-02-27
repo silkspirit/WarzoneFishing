@@ -10,7 +10,7 @@ fishing:
     name: " "
   items:
     # ═══════════════════════════════════════════════════════════════════════════
-    # COMMON FISH (Row 1)
+    # COMMON FISH (Row 2 - centered)
     # ═══════════════════════════════════════════════════════════════════════════
     1:
       type: item
@@ -27,10 +27,10 @@ fishing:
           - "&7warzone waters."
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&e&oWarzone Fishing"
+          - "&aSell: &f$5"
         nbt: "{warzone_fish:1b,warzone_rarity:\"common\"}"
       sellPrice: 5
-      slot: 10
+      slot: 11
     2:
       type: item
       item:
@@ -46,10 +46,10 @@ fishing:
           - "&7from the depths."
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&e&oWarzone Fishing"
+          - "&aSell: &f$8"
         nbt: "{warzone_fish:1b,warzone_rarity:\"common\"}"
       sellPrice: 8
-      slot: 11
+      slot: 12
     3:
       type: item
       item:
@@ -63,9 +63,11 @@ fishing:
           - "&7Someone's lost boot..."
           - "&8Smells terrible."
           - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&aSell: &f$1"
         nbt: "{warzone_junk:1b}"
       sellPrice: 1
-      slot: 12
+      slot: 14
     4:
       type: item
       item:
@@ -79,12 +81,14 @@ fishing:
           - "&7Ancient bones from"
           - "&7long-dead fish."
           - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&aSell: &f$3"
         nbt: "{warzone_junk:1b}"
       sellPrice: 3
-      slot: 13
+      slot: 15
 
     # ═══════════════════════════════════════════════════════════════════════════
-    # UNCOMMON FISH (Row 2)
+    # UNCOMMON FISH (Row 3 - centered)
     # ═══════════════════════════════════════════════════════════════════════════
     5:
       type: item
@@ -101,10 +105,10 @@ fishing:
           - "&aLarger than normal!"
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&a&oUncommon Warzone Fish"
+          - "&aSell: &f$25"
         nbt: "{warzone_fish:1b,warzone_rarity:\"uncommon\"}"
       sellPrice: 25
-      slot: 19
+      slot: 20
     6:
       type: item
       item:
@@ -120,10 +124,10 @@ fishing:
           - "&aFresh and healthy!"
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&a&oUncommon Warzone Fish"
+          - "&aSell: &f$35"
         nbt: "{warzone_fish:1b,warzone_rarity:\"uncommon\"}"
       sellPrice: 35
-      slot: 20
+      slot: 21
     7:
       type: item
       item:
@@ -139,10 +143,10 @@ fishing:
           - "&eRare in these waters!"
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&a&oUncommon Warzone Fish"
+          - "&aSell: &f$40"
         nbt: "{warzone_fish:1b,warzone_rarity:\"uncommon\"}"
       sellPrice: 40
-      slot: 21
+      slot: 23
     8:
       type: item
       item:
@@ -156,12 +160,14 @@ fishing:
           - "&7Iron lost in battle..."
           - "&7Recovered from the depths."
           - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&aSell: &f$60"
         nbt: "{warzone_treasure:1b}"
       sellPrice: 60
-      slot: 22
+      slot: 24
 
     # ═══════════════════════════════════════════════════════════════════════════
-    # RARE FISH (Row 3)
+    # RARE FISH (Row 4 - centered)
     # ═══════════════════════════════════════════════════════════════════════════
     9:
       type: item
@@ -178,11 +184,11 @@ fishing:
           - "&3Trophy quality fish"
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&3&oRare Warzone Fish"
+          - "&aSell: &f$100"
         nbt: "{warzone_fish:1b,warzone_rarity:\"rare\"}"
         glow: true
       sellPrice: 100
-      slot: 28
+      slot: 29
     10:
       type: item
       item:
@@ -198,11 +204,11 @@ fishing:
           - "&3Highly sought after"
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&3&oRare Warzone Fish"
+          - "&aSell: &f$120"
         nbt: "{warzone_fish:1b,warzone_rarity:\"rare\"}"
         glow: true
       sellPrice: 120
-      slot: 29
+      slot: 30
     11:
       type: item
       item:
@@ -218,10 +224,10 @@ fishing:
           - "&cHandle with care!"
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&3&oRare Warzone Fish"
+          - "&aSell: &f$80"
         nbt: "{warzone_fish:1b,warzone_rarity:\"rare\"}"
       sellPrice: 80
-      slot: 30
+      slot: 31
     12:
       type: item
       item:
@@ -235,9 +241,11 @@ fishing:
           - "&7A diamond lost in the chaos"
           - "&bShines bright despite the war"
           - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&aSell: &f$250"
         nbt: "{warzone_treasure:1b,warzone_rarity:\"rare\"}"
       sellPrice: 250
-      slot: 31
+      slot: 32
     13:
       type: item
       item:
@@ -251,12 +259,14 @@ fishing:
           - "&7Someone dropped this..."
           - "&eYour lucky day!"
           - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&aSell: &f$200"
         nbt: "{warzone_treasure:1b}"
       sellPrice: 200
-      slot: 32
+      slot: 33
 
     # ═══════════════════════════════════════════════════════════════════════════
-    # EPIC FISH (Row 4)
+    # EPIC FISH (Row 5 - centered)
     # ═══════════════════════════════════════════════════════════════════════════
     14:
       type: item
@@ -274,11 +284,11 @@ fishing:
           - "&7who catch it."
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&d&oEpic Warzone Fish"
+          - "&aSell: &f$500"
         nbt: "{warzone_fish:1b,warzone_rarity:\"epic\"}"
         glow: true
       sellPrice: 500
-      slot: 37
+      slot: 38
     15:
       type: item
       item:
@@ -294,11 +304,11 @@ fishing:
           - "&7Radiates with power."
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&d&oEpic Warzone Fish"
+          - "&aSell: &f$600"
         nbt: "{warzone_fish:1b,warzone_rarity:\"epic\"}"
         glow: true
       sellPrice: 600
-      slot: 38
+      slot: 39
     16:
       type: item
       item:
@@ -313,9 +323,11 @@ fishing:
           - "&7The legendary god apple!"
           - "&6Found in warzone waters"
           - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&aSell: &f$1,500"
         nbt: "{warzone_treasure:1b,warzone_rarity:\"epic\"}"
       sellPrice: 1500
-      slot: 39
+      slot: 40
     17:
       type: item
       item:
@@ -329,12 +341,14 @@ fishing:
           - "&dA star that fell into the ocean"
           - "&7Radiates with cosmic energy"
           - "&8━━━━━━━━━━━━━━━━━━━━"
+          - ""
+          - "&aSell: &f$2,500"
         nbt: "{warzone_treasure:1b,warzone_rarity:\"epic\"}"
       sellPrice: 2500
-      slot: 40
+      slot: 41
 
     # ═══════════════════════════════════════════════════════════════════════════
-    # LEGENDARY FISH (Row 5)
+    # LEGENDARY FISH (Row 6 - centered)
     # ═══════════════════════════════════════════════════════════════════════════
     18:
       type: item
@@ -352,11 +366,11 @@ fishing:
           - "&7said to have infinite luck."
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&8&o「 Warzone Fishing Legendary 」"
+          - "&aSell: &f$5,000"
         nbt: "{warzone_fish:1b,warzone_rarity:\"legendary\"}"
         glow: true
       sellPrice: 5000
-      slot: 46
+      slot: 47
     19:
       type: item
       item:
@@ -373,11 +387,11 @@ fishing:
           - "&7of the ocean god's realm."
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&8&o「 Warzone Fishing Legendary 」"
+          - "&aSell: &f$6,000"
         nbt: "{warzone_fish:1b,warzone_rarity:\"legendary\"}"
         glow: true
       sellPrice: 6000
-      slot: 47
+      slot: 48
     20:
       type: item
       item:
@@ -394,11 +408,11 @@ fishing:
           - "&6Ability: &eStrike with ocean fury!"
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&8&o「 Warzone Fishing Legendary 」"
+          - "&aSell: &f$25,000"
         nbt: "{warzone_legendary:1b,warzone_item:\"poseidons_trident\"}"
         glow: true
       sellPrice: 25000
-      slot: 48
+      slot: 49
     21:
       type: item
       item:
@@ -414,8 +428,8 @@ fishing:
           - "&7Display of a master angler."
           - "&8━━━━━━━━━━━━━━━━━━━━"
           - ""
-          - "&8&o「 Warzone Fishing Trophy 」"
+          - "&aSell: &f$10,000"
         nbt: "{warzone_trophy:1b}"
         skull: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjIxNjY4ZWY3Y2I3OWRkOWMyMmNlM2QxZjNmNGNiNmUyNTU5ODkzYjZkZjRhNDY5NTE0ZTY2N2MxNmFhNCJ9fX0="
       sellPrice: 10000
-      slot: 49
+      slot: 50
