@@ -32,138 +32,371 @@ settings:
 # REWARDS CONFIGURATION
 # ============================================
 rewards:
-  # ============ COMMON ITEMS ============
-  raw_fish:
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # COMMON (Level 0+) - 45% chance
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  common_cod:
     material: RAW_FISH
-    display-name: "&7Common Fish"
+    data: 0
+    display-name: "&7Common Cod"
     amount: 1
     lore:
-      - "&8Just a regular fish..."
-      - "&7Nothing special here."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &fCommon"
       - ""
-      - "&e&oWarzone Fishing Reward"
-    chance: 50.0
+      - "&7A basic fish from the"
+      - "&7warzone waters."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&e&oWarzone Fishing"
+    nbt:
+      warzone_rarity: "common"
+      warzone_fish: true
+      sell_value: 5
+    chance: 20.0
     rarity: COMMON
-    title-message: "&7You caught a fish!"
-    subtitle-message: "&fCommon Fish"
+    required-level: 0
+    title-message: "&7Fish Caught!"
+    subtitle-message: "&fCommon Cod"
     sound: SPLASH
     sound-pitch: 1.0
     sound-volume: 1.0
 
-  salmon:
+  common_salmon:
     material: RAW_FISH
     data: 1
-    display-name: "&6Warzone Salmon"
+    display-name: "&7Common Salmon"
     amount: 1
     lore:
-      - "&7A salmon from the warzone waters"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &fCommon"
       - ""
-      - "&e&oWarzone Fishing Reward"
-    chance: 40.0
-    rarity: COMMON
-    title-message: "&6Fish Caught!"
-    subtitle-message: "&eWarzone Salmon"
-    sound: SPLASH
-    sound-pitch: 1.2
-    sound-volume: 1.0
-
-  clownfish:
-    material: RAW_FISH
-    data: 2
-    display-name: "&cTropical Fish"
-    amount: 1
-    lore:
-      - "&7A colorful tropical fish"
+      - "&7A simple salmon, fresh"
+      - "&7from the depths."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
       - ""
-      - "&e&oWarzone Fishing Reward"
-    chance: 30.0
+      - "&e&oWarzone Fishing"
+    nbt:
+      warzone_rarity: "common"
+      warzone_fish: true
+      sell_value: 8
+    chance: 15.0
     rarity: COMMON
-    title-message: "&cNice Catch!"
-    subtitle-message: "&eTropical Fish"
+    required-level: 0
+    title-message: "&7Fish Caught!"
+    subtitle-message: "&fCommon Salmon"
     sound: SPLASH
-    sound-pitch: 1.5
-    sound-volume: 1.0
-
-  fishbones:
-    material: BONE
-    display-name: "&7Fishbones"
-    amount: 1
-    lore:
-      - "&7Bones from ancient fish"
-      - ""
-      - "&e&oWarzone Fishing Reward"
-    chance: 35.0
-    rarity: COMMON
-    title-message: "&7Bones..."
-    subtitle-message: "&7Fishbones"
-    sound: SPLASH
-    sound-pitch: 0.8
+    sound-pitch: 1.1
     sound-volume: 1.0
 
   old_boot:
     material: LEATHER_BOOTS
     display-name: "&8Soggy Old Boot"
+    amount: 1
     lore:
-      - "&7Someone's old boot..."
-      - "&8Smells like fish."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &8Junk"
       - ""
-      - "&c&oWhy would anyone want this?"
-    chance: 25.0
+      - "&7Someone's lost boot..."
+      - "&8Smells terrible."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    nbt:
+      warzone_junk: true
+      sell_value: 1
+    chance: 8.0
     rarity: COMMON
+    required-level: 0
     title-message: "&8Ew..."
     subtitle-message: "&7An old boot?"
     sound: VILLAGER_NO
     sound-pitch: 0.5
     sound-volume: 1.0
 
-  sea_clay:
-    material: CLAY_BALL
-    display-name: "&7Sea Clay"
+  fish_bones:
+    material: BONE
+    display-name: "&7Fish Bones"
+    amount: 2
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &fCommon"
+      - ""
+      - "&7Ancient bones from"
+      - "&7long-dead fish."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    nbt:
+      warzone_junk: true
+      sell_value: 3
+    chance: 2.0
+    rarity: COMMON
+    required-level: 0
+    title-message: "&7Hmm..."
+    subtitle-message: "&fFish Bones"
+    sound: SKELETON_HURT
+    sound-pitch: 1.5
+    sound-volume: 0.5
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # UNCOMMON (Level 4+) - 25% chance
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  uncommon_cod:
+    material: RAW_FISH
+    data: 0
+    display-name: "&aQuality Cod"
     amount: 1
     lore:
-      - "&e&oWarzone Fishing Reward"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &aUncommon"
       - ""
-      - "&7Soft clay from the ocean bed"
-    chance: 30.0
-    rarity: COMMON
-    title-message: "&7Clay!"
-    subtitle-message: "&7Sea Clay"
-    sound: SPLASH
+      - "&7A well-fed, healthy cod."
+      - "&aLarger than normal!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&a&oUncommon Warzone Fish"
+    nbt:
+      warzone_rarity: "uncommon"
+      warzone_fish: true
+      sell_value: 25
+    chance: 8.0
+    rarity: UNCOMMON
+    required-level: 4
+    title-message: "&aNice Catch!"
+    subtitle-message: "&aQuality Cod"
+    sound: NOTE_PLING
     sound-pitch: 1.0
     sound-volume: 1.0
 
-  # ============ UNCOMMON ITEMS ============
-  iron_ingot:
+  uncommon_salmon:
+    material: RAW_FISH
+    data: 1
+    display-name: "&aPrime Salmon"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &aUncommon"
+      - ""
+      - "&7A premium salmon."
+      - "&aFresh and healthy!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&a&oUncommon Warzone Fish"
+    nbt:
+      warzone_rarity: "uncommon"
+      warzone_fish: true
+      sell_value: 35
+    chance: 6.0
+    rarity: UNCOMMON
+    required-level: 4
+    title-message: "&aNice Catch!"
+    subtitle-message: "&aPrime Salmon"
+    sound: NOTE_PLING
+    sound-pitch: 1.1
+    sound-volume: 1.0
+
+  tropical_fish:
+    material: RAW_FISH
+    data: 2
+    display-name: "&eTropical Fish"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &aUncommon"
+      - ""
+      - "&7A colorful tropical fish."
+      - "&eRare in these waters!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&a&oUncommon Warzone Fish"
+    nbt:
+      warzone_rarity: "uncommon"
+      warzone_fish: true
+      sell_value: 40
+    chance: 5.0
+    rarity: UNCOMMON
+    required-level: 4
+    title-message: "&eColorful!"
+    subtitle-message: "&eTropical Fish"
+    sound: NOTE_PLING
+    sound-pitch: 1.3
+    sound-volume: 1.0
+
+  sunken_iron:
     material: IRON_INGOT
     display-name: "&fSunken Iron"
-    amount: 1
+    amount: 3
     lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &aUncommon"
+      - ""
       - "&7Iron lost in battle..."
       - "&7Recovered from the depths."
-      - ""
-      - "&a&oUncommon Warzone Fishing"
-    chance: 20.0
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    nbt:
+      warzone_treasure: true
+      sell_value: 60
+    chance: 4.0
     rarity: UNCOMMON
+    required-level: 4
     title-message: "&fMetal Found!"
-    subtitle-message: "&7Sunken Iron"
+    subtitle-message: "&7Sunken Iron x3"
     sound: NOTE_PLING
+    sound-pitch: 0.8
+    sound-volume: 1.0
+
+  # Rogue Crate Key (Level 5+)
+  rogue_crate_key:
+    material: TRIPWIRE_HOOK
+    display-name: "&7&lRogue Crate Key"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &aUncommon"
+      - ""
+      - "&7A key to the Rogue crate!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    chance: 1.5
+    rarity: UNCOMMON
+    required-level: 5
+    title-message: "&7&lCRATE KEY!"
+    subtitle-message: "&7Rogue Key"
+    sound: LEVEL_UP
+    sound-pitch: 1.2
+    sound-volume: 1.0
+    commands:
+      - "pcrate giveKey rogue {player} 1"
+
+  # Iris Crate Key (Level 6+)
+  iris_crate_key:
+    material: TRIPWIRE_HOOK
+    display-name: "&9&lIris Crate Key"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &aUncommon"
+      - ""
+      - "&9A key to the Iris crate!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    chance: 1.0
+    rarity: UNCOMMON
+    required-level: 6
+    title-message: "&9&lCRATE KEY!"
+    subtitle-message: "&9Iris Key"
+    sound: LEVEL_UP
+    sound-pitch: 1.3
+    sound-volume: 1.0
+    commands:
+      - "pcrate giveKey iris {player} 1"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # RARE (Level 7+) - 15% chance
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  rare_cod:
+    material: RAW_FISH
+    data: 0
+    display-name: "&3&lPrize Cod"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
+      - ""
+      - "&7An exceptional specimen!"
+      - "&3Trophy quality fish"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&3&oRare Warzone Fish"
+    nbt:
+      warzone_rarity: "rare"
+      warzone_fish: true
+      sell_value: 100
+    glow: true
+    chance: 4.0
+    rarity: RARE
+    required-level: 7
+    title-message: "&3&lRare Catch!"
+    subtitle-message: "&b&lPrize Cod!"
+    sound: LEVEL_UP
     sound-pitch: 1.0
     sound-volume: 1.0
 
-  gold_ingot:
-    material: GOLD_INGOT
-    display-name: "&6Sunken Gold"
+  rare_salmon:
+    material: RAW_FISH
+    data: 1
+    display-name: "&3&lKing Salmon"
     amount: 1
     lore:
-      - "&7Gold lost to the waters"
-      - "&6Still shines bright!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
       - ""
-      - "&a&oUncommon Warzone Fishing"
-    chance: 15.0
-    rarity: UNCOMMON
-    title-message: "&6Gold Found!"
-    subtitle-message: "&eSunken Gold"
-    sound: NOTE_PLING
+      - "&7The king of salmon!"
+      - "&3Highly sought after"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&3&oRare Warzone Fish"
+    nbt:
+      warzone_rarity: "rare"
+      warzone_fish: true
+      sell_value: 120
+    glow: true
+    chance: 3.0
+    rarity: RARE
+    required-level: 7
+    title-message: "&3&lRare Catch!"
+    subtitle-message: "&b&lKing Salmon!"
+    sound: LEVEL_UP
+    sound-pitch: 1.1
+    sound-volume: 1.0
+
+  pufferfish:
+    material: RAW_FISH
+    data: 3
+    display-name: "&3Warzone Pufferfish"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
+      - ""
+      - "&7A dangerous delicacy"
+      - "&cHandle with care!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&3&oRare Warzone Fish"
+    nbt:
+      warzone_rarity: "rare"
+      warzone_fish: true
+      sell_value: 80
+    chance: 2.5
+    rarity: RARE
+    required-level: 7
+    title-message: "&3Careful!"
+    subtitle-message: "&bPufferfish!"
+    sound: LEVEL_UP
+    sound-pitch: 0.8
+    sound-volume: 1.0
+
+  warzone_diamond:
+    material: DIAMOND
+    display-name: "&bWarzone Diamond"
+    amount: 2
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
+      - ""
+      - "&7A diamond lost in the chaos"
+      - "&bShines bright despite the war"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    nbt:
+      warzone_treasure: true
+      warzone_rarity: "rare"
+      sell_value: 250
+    chance: 2.0
+    rarity: RARE
+    required-level: 8
+    title-message: "&b&lDiamond!"
+    subtitle-message: "&bWarzone Diamond x2"
+    sound: LEVEL_UP
     sound-pitch: 1.2
     sound-volume: 1.0
 
@@ -172,182 +405,136 @@ rewards:
     display-name: "&6Sunken Gapple"
     amount: 1
     lore:
-      - "&7Someone must have dropped this..."
-      - "&eYour lucky day!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
       - ""
-      - "&a&oUncommon Warzone Fishing"
-    chance: 12.0
-    rarity: UNCOMMON
+      - "&7Someone dropped this..."
+      - "&eYour lucky day!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    nbt:
+      warzone_treasure: true
+      sell_value: 200
+    chance: 1.5
+    rarity: RARE
+    required-level: 8
     title-message: "&6Lucky Find!"
     subtitle-message: "&eGolden Apple!"
-    sound: NOTE_PLING
+    sound: LEVEL_UP
     sound-pitch: 1.5
     sound-volume: 1.0
 
-  ender_pearl:
-    material: ENDER_PEARL
-    display-name: "&5Waterlogged Pearl"
+  # Foxglove Crate Key (Level 8+)
+  foxglove_crate_key:
+    material: TRIPWIRE_HOOK
+    display-name: "&5&lFoxglove Crate Key"
     amount: 1
     lore:
-      - "&7Ender pearls found in the water"
-      - "&5Still functional!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
       - ""
-      - "&a&oUncommon Warzone Fishing"
-    chance: 12.0
-    rarity: UNCOMMON
-    title-message: "&5Pearl Found!"
-    subtitle-message: "&dEnder Pearl"
-    sound: ENDERMAN_TELEPORT
-    sound-pitch: 1.0
+      - "&5A key to the Foxglove crate!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    chance: 1.0
+    rarity: RARE
+    required-level: 8
+    title-message: "&5&lCRATE KEY!"
+    subtitle-message: "&5Foxglove Key"
+    sound: LEVEL_UP
+    sound-pitch: 1.4
+    sound-volume: 1.0
+    broadcast: true
+    broadcast-message: "&5&l[FISHING] &d{player} &ffished up a &5&lFoxglove Crate Key&f!"
+    commands:
+      - "pcrate giveKey foxglove {player} 1"
+
+  # Rose Crate Key (Level 9+)
+  rose_crate_key:
+    material: TRIPWIRE_HOOK
+    display-name: "&c&lRose Crate Key"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &3Rare"
+      - ""
+      - "&cA key to the Rose crate!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    chance: 0.8
+    rarity: RARE
+    required-level: 9
+    title-message: "&c&lCRATE KEY!"
+    subtitle-message: "&cRose Key"
+    sound: LEVEL_UP
+    sound-pitch: 1.5
+    sound-volume: 1.0
+    broadcast: true
+    broadcast-message: "&c&l[FISHING] &f{player} &7fished up a &c&lRose Crate Key&7!"
+    commands:
+      - "pcrate giveKey rose {player} 1"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # EPIC (Level 10+) - 10% chance
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  epic_cod:
+    material: RAW_FISH
+    data: 0
+    display-name: "&d&lMythical Cod"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &dEPIC"
+      - ""
+      - "&dA fish of legend!"
+      - "&7Said to grant luck to those"
+      - "&7who catch it."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&d&oEpic Warzone Fish"
+    nbt:
+      warzone_rarity: "epic"
+      warzone_fish: true
+      sell_value: 500
+    glow: true
+    chance: 1.5
+    rarity: EPIC
+    required-level: 10
+    title-message: "&d&lEPIC CATCH!"
+    subtitle-message: "&d&lMythical Cod!"
+    sound: WITHER_SPAWN
+    sound-pitch: 1.5
     sound-volume: 0.5
+    broadcast: true
+    broadcast-message: "&d&l[EPIC] &f{player} &7caught a &d&lMythical Cod&7!"
 
-  money_pouch_small:
-    material: GOLD_NUGGET
-    display-name: "&aSmall Coin Pouch"
+  epic_salmon:
+    material: RAW_FISH
+    data: 1
+    display-name: "&d&lEmperor Salmon"
     amount: 1
     lore:
-      - "&7A small pouch of coins"
-      - "&aWorth some gold!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &dEPIC"
       - ""
-      - "&a&oUncommon Warzone Fishing"
-    chance: 15.0
-    rarity: UNCOMMON
-    title-message: "&aMoney Found!"
-    subtitle-message: "&7Small Coin Pouch"
-    sound: NOTE_PLING
-    sound-pitch: 1.0
-    sound-volume: 1.0
-
-  exp_bottle:
-    material: EXP_BOTTLE
-    display-name: "&aBottled Experience"
-    amount: 1
-    lore:
-      - "&7Experience from the deep"
+      - "&dThe emperor of all salmon!"
+      - "&7Radiates with power."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
       - ""
-      - "&a&oUncommon Warzone Fishing"
-    chance: 18.0
-    rarity: UNCOMMON
-    title-message: "&aXP Found!"
-    subtitle-message: "&7Bottled Experience"
-    sound: NOTE_PLING
-    sound-pitch: 1.3
-    sound-volume: 1.0
-
-  jellyfish_goo:
-    material: SLIME_BALL
-    display-name: "&aJellyfish Goo"
-    amount: 1
-    lore:
-      - "&a&oUncommon Warzone Fishing"
-      - ""
-      - "&7Sticky substance from jellyfish"
-    chance: 16.0
-    rarity: UNCOMMON
-    title-message: "&aGoo!"
-    subtitle-message: "&7Jellyfish Goo"
-    sound: SPLASH
-    sound-pitch: 0.8
-    sound-volume: 1.0
-
-  sea_sponge:
-    material: SPONGE
-    display-name: "&eSea Sponge"
-    amount: 1
-    lore:
-      - "&a&oUncommon Warzone Fishing"
-      - ""
-      - "&7Fresh from the ocean floor"
-    chance: 14.0
-    rarity: UNCOMMON
-    title-message: "&eSponge!"
-    subtitle-message: "&7Sea Sponge"
-    sound: SPLASH
-    sound-pitch: 1.0
-    sound-volume: 1.0
-
-  undersea_magma:
-    material: MAGMA_CREAM
-    display-name: "&cUndersea Magma"
-    amount: 1
-    lore:
-      - "&a&oUncommon Warzone Fishing"
-      - ""
-      - "&7From volcanic vents"
-    chance: 12.0
-    rarity: UNCOMMON
-    title-message: "&cHot!"
-    subtitle-message: "&7Undersea Magma"
-    sound: NOTE_PLING
-    sound-pitch: 0.8
-    sound-volume: 1.0
-
-  sea_phosphorus:
-    material: GLOWSTONE_DUST
-    display-name: "&eSea Phosphorus"
-    amount: 1
-    lore:
-      - "&a&oUncommon Warzone Fishing"
-      - ""
-      - "&7Glowing dust from deep fish"
-    chance: 14.0
-    rarity: UNCOMMON
-    title-message: "&eGlow!"
-    subtitle-message: "&7Sea Phosphorus"
-    sound: NOTE_PLING
-    sound-pitch: 1.2
-    sound-volume: 1.0
-
-  coral_dust:
-    material: REDSTONE
-    display-name: "&cCoral Dust"
-    amount: 1
-    lore:
-      - "&a&oUncommon Warzone Fishing"
-      - ""
-      - "&7Ground coral from the reef"
-    chance: 16.0
-    rarity: UNCOMMON
-    title-message: "&cCoral!"
-    subtitle-message: "&7Coral Dust"
-    sound: NOTE_PLING
-    sound-pitch: 1.0
-    sound-volume: 1.0
-
-  # ============ RARE ITEMS ============
-  diamond:
-    material: DIAMOND
-    display-name: "&bWarzone Diamond"
-    amount: 1
-    lore:
-      - "&7A diamond lost in the chaos"
-      - "&bShines bright despite the war"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 8.0
-    rarity: RARE
-    title-message: "&b&lRARE CATCH!"
-    subtitle-message: "&bDiamond!"
-    sound: LEVEL_UP
-    sound-pitch: 1.0
-    sound-volume: 1.0
-
-  emerald:
-    material: EMERALD
-    display-name: "&aSea Emerald"
-    amount: 1
-    lore:
-      - "&7Emeralds polished by the sea"
-      - "&aGleaming with ocean magic"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 7.0
-    rarity: RARE
-    title-message: "&a&lRARE!"
-    subtitle-message: "&aSea Emerald!"
-    sound: LEVEL_UP
-    sound-pitch: 1.2
-    sound-volume: 1.0
+      - "&d&oEpic Warzone Fish"
+    nbt:
+      warzone_rarity: "epic"
+      warzone_fish: true
+      sell_value: 600
+    glow: true
+    chance: 1.2
+    rarity: EPIC
+    required-level: 10
+    title-message: "&d&lEPIC CATCH!"
+    subtitle-message: "&d&lEmperor Salmon!"
+    sound: WITHER_SPAWN
+    sound-pitch: 1.5
+    sound-volume: 0.5
+    broadcast: true
+    broadcast-message: "&d&l[EPIC] &f{player} &7caught an &d&lEmperor Salmon&7!"
 
   god_apple:
     material: GOLDEN_APPLE
@@ -355,434 +542,282 @@ rewards:
     display-name: "&6&lEnchanted Golden Apple"
     amount: 1
     lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &dEPIC"
+      - ""
       - "&7The legendary god apple!"
       - "&6Found in warzone waters"
-      - "&eTruly a rare find!"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 3.0
-    rarity: RARE
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    nbt:
+      warzone_treasure: true
+      warzone_rarity: "epic"
+      sell_value: 1500
+    chance: 1.0
+    rarity: EPIC
+    required-level: 11
     title-message: "&6&lGOD APPLE!"
-    subtitle-message: "&e&lIncredible Catch!"
-    sound: LEVEL_UP
-    sound-pitch: 1.5
-    sound-volume: 1.0
-    broadcast: true
-    broadcast-message: "&6&l[RARE] &e{player} &7fished up a &6God Apple&7!"
-
-  money_pouch_large:
-    material: GOLD_INGOT
-    display-name: "&6Large Coin Pouch"
-    amount: 1
-    lore:
-      - "&7A large pouch of coins"
-      - "&6Quite valuable!"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 5.0
-    rarity: RARE
-    title-message: "&6&lJackpot!"
-    subtitle-message: "&eLarge Coin Pouch"
-    sound: LEVEL_UP
-    sound-pitch: 1.0
-    sound-volume: 1.0
-
-  treasure_map:
-    material: MAP
-    display-name: "&e&lMysterious Treasure Map"
-    lore:
-      - "&7An old map with markings..."
-      - "&eX marks the spot!"
-      - ""
-      - "&7&oMaybe it leads somewhere?"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 5.0
-    rarity: RARE
-    title-message: "&e&lTreasure Map!"
-    subtitle-message: "&7What secrets does it hold?"
-    sound: NOTE_PLING
-    sound-pitch: 2.0
-    sound-volume: 1.0
-
-  compressed_diamonds:
-    material: DIAMOND_BLOCK
-    display-name: "&b&lCompressed Diamonds"
-    amount: 1
-    lore:
-      - "&7Diamonds compressed by"
-      - "&7the pressure of the deep"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 4.0
-    rarity: RARE
-    title-message: "&b&lDIAMOND BLOCK!"
-    subtitle-message: "&bCompressed Diamonds!"
-    sound: LEVEL_UP
-    sound-pitch: 1.3
-    sound-volume: 1.0
-
-  mermaids_tears:
-    material: GHAST_TEAR
-    display-name: "&fMermaid's Tears"
-    amount: 1
-    lore:
-      - "&9RARE"
-      - ""
-      - "&7Tears from a sea creature"
-      - "&fValued by alchemists"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 5.0
-    rarity: RARE
-    title-message: "&f&lMermaid's Tears!"
-    subtitle-message: "&7Magical tears..."
-    sound: LEVEL_UP
-    sound-pitch: 1.5
-    sound-volume: 1.0
-
-  sunken_treasure_rod:
-    material: BLAZE_ROD
-    display-name: "&6Sunken Treasure Rod"
-    amount: 1
-    lore:
-      - "&9RARE"
-      - ""
-      - "&7A magical rod from the depths"
-      - "&6Still warm to the touch"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 5.0
-    rarity: RARE
-    title-message: "&6&lTreasure Rod!"
-    subtitle-message: "&7Magical..."
-    sound: LEVEL_UP
-    sound-pitch: 1.0
-    sound-volume: 1.0
-
-  dark_prismarine:
-    material: PRISMARINE
-    data: 2
-    display-name: "&bDark Prismarine"
-    amount: 1
-    lore:
-      - "&9RARE"
-      - ""
-      - "&7Rare prismarine from the depths"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 6.0
-    rarity: RARE
-    title-message: "&b&lPrismarine!"
-    subtitle-message: "&7Dark Prismarine"
-    sound: LEVEL_UP
-    sound-pitch: 1.0
-    sound-volume: 1.0
-
-  deep_sea_lantern:
-    material: SEA_LANTERN
-    display-name: "&bDeep Sea Lantern"
-    amount: 1
-    lore:
-      - "&9RARE"
-      - ""
-      - "&7Glows with mysterious light"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 5.0
-    rarity: RARE
-    title-message: "&b&lSea Lantern!"
-    subtitle-message: "&7Glowing..."
-    sound: LEVEL_UP
-    sound-pitch: 1.2
-    sound-volume: 1.0
-
-  waterlogged_tome:
-    material: BOOK
-    display-name: "&5Waterlogged Tome"
-    amount: 1
-    lore:
-      - "&9RARE"
-      - ""
-      - "&7Ancient knowledge, slightly damp"
-      - "&7Contains forgotten secrets"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 5.0
-    rarity: RARE
-    title-message: "&5&lAncient Tome!"
-    subtitle-message: "&7Knowledge..."
-    sound: LEVEL_UP
-    sound-pitch: 1.0
-    sound-volume: 1.0
-
-  drowned_pirate_skull:
-    material: SKULL_ITEM
-    data: 0
-    display-name: "&8Drowned Pirate Skull"
-    lore:
-      - "&9RARE"
-      - ""
-      - "&7The skull of a fallen pirate"
-      - "&8Cursed by the sea"
-      - ""
-      - "&9&oRare Warzone Fishing"
-    chance: 4.0
-    rarity: RARE
-    title-message: "&8&lPirate Skull!"
-    subtitle-message: "&7Cursed..."
+    subtitle-message: "&e&lIncredible Find!"
     sound: WITHER_SPAWN
-    sound-pitch: 1.5
-    sound-volume: 0.5
+    sound-pitch: 1.2
+    sound-volume: 0.6
+    broadcast: true
+    broadcast-message: "&d&l[EPIC] &f{player} &7fished up an &6&lEnchanted Golden Apple&7!"
 
-  # ============ EPIC ITEMS ============
-  star_of_depths:
+  nether_star_fragment:
     material: NETHER_STAR
-    display-name: "&5&lStar of the Depths"
+    display-name: "&d&lStar of the Depths"
+    amount: 1
     lore:
-      - "&5EPIC"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &dEPIC"
       - ""
       - "&dA star that fell into the ocean"
       - "&7Radiates with cosmic energy"
-      - ""
-      - "&5&oEpic Warzone Fishing"
-    chance: 2.0
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    nbt:
+      warzone_treasure: true
+      warzone_rarity: "epic"
+      sell_value: 2500
+    chance: 0.8
     rarity: EPIC
-    title-message: "&5&lEPIC FIND!"
-    subtitle-message: "&d&lStar of the Depths!"
-    sound: WITHER_SPAWN
-    sound-pitch: 1.5
-    sound-volume: 0.5
-    broadcast: true
-    broadcast-message: "&5&l[EPIC] &d{player} &7fished up the &5Star of the Depths&7!"
-
-  lighthouse_core:
-    material: BEACON
-    display-name: "&5&lLighthouse Core"
-    lore:
-      - "&5EPIC"
-      - ""
-      - "&dThe heart of an ancient lighthouse"
-      - "&7Still guides sailors home"
-      - ""
-      - "&5&oEpic Warzone Fishing"
-    chance: 1.0
-    rarity: EPIC
-    title-message: "&5&lEPIC!"
-    subtitle-message: "&d&lLighthouse Core!"
-    sound: WITHER_SPAWN
-    sound-pitch: 1.2
-    sound-volume: 0.5
-    broadcast: true
-    broadcast-message: "&5&l[EPIC] &d{player} &7discovered a &5Lighthouse Core&7!"
-
-  drowned_warlord_skull:
-    material: SKULL_ITEM
-    data: 1
-    display-name: "&5&lDrowned Warlord's Skull"
-    lore:
-      - "&5EPIC"
-      - ""
-      - "&dThe skull of a legendary warrior"
-      - "&7Lost to the warzone depths"
-      - ""
-      - "&5&oEpic Warzone Fishing"
-    chance: 1.5
-    rarity: EPIC
-    title-message: "&5&lEPIC SKULL!"
-    subtitle-message: "&d&lWarlord's Skull!"
+    required-level: 11
+    title-message: "&d&l✦ STAR ✦"
+    subtitle-message: "&dStar of the Depths!"
     sound: WITHER_SPAWN
     sound-pitch: 1.0
-    sound-volume: 0.5
+    sound-volume: 0.7
     broadcast: true
-    broadcast-message: "&5&l[EPIC] &d{player} &7unearthed the &5Drowned Warlord's Skull&7!"
+    broadcast-message: "&d&l[EPIC] &f{player} &7found a &d&lStar of the Depths&7!"
 
-  sea_touched_tome:
-    material: ENCHANTED_BOOK
-    display-name: "&d&lSea-Touched Tome"
+  # Lily Crate Key (Level 11+)
+  lily_crate_key:
+    material: TRIPWIRE_HOOK
+    display-name: "&f&lLily Crate Key"
+    amount: 1
     lore:
-      - "&5EPIC"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &dEPIC"
       - ""
-      - "&dA book infused with"
-      - "&docean magic"
-      - ""
-      - "&5&oEpic Warzone Fishing"
-    chance: 2.0
+      - "&fA key to the Lily crate!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    chance: 0.7
     rarity: EPIC
-    title-message: "&5&lEPIC TOME!"
-    subtitle-message: "&d&lSea-Touched Tome!"
+    required-level: 11
+    title-message: "&f&lCRATE KEY!"
+    subtitle-message: "&fLily Key"
+    sound: WITHER_SPAWN
+    sound-pitch: 1.4
+    sound-volume: 0.6
+    broadcast: true
+    broadcast-message: "&f&l[EPIC] &7{player} &ffished up a &f&lLily Crate Key&7!"
+    commands:
+      - "pcrate giveKey lily {player} 1"
+
+  # Lotus Crate Key (Level 12+)
+  lotus_crate_key:
+    material: TRIPWIRE_HOOK
+    display-name: "&b&lLotus Crate Key"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &dEPIC"
+      - ""
+      - "&bA key to the Lotus crate!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    chance: 0.5
+    rarity: EPIC
+    required-level: 12
+    title-message: "&b&lCRATE KEY!"
+    subtitle-message: "&bLotus Key"
     sound: WITHER_SPAWN
     sound-pitch: 1.3
-    sound-volume: 0.5
+    sound-volume: 0.6
     broadcast: true
-    broadcast-message: "&5&l[EPIC] &d{player} &7found a &5Sea-Touched Tome&7!"
+    broadcast-message: "&b&l[EPIC] &f{player} &7fished up a &b&lLotus Crate Key&7!"
+    commands:
+      - "pcrate giveKey lotus {player} 1"
 
-  eye_of_the_deep:
-    material: EYE_OF_ENDER
-    display-name: "&5Eye of the Deep"
+  # ═══════════════════════════════════════════════════════════════════════════
+  # LEGENDARY (Level 13+) - 5% chance
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  legendary_cod:
+    material: RAW_FISH
+    data: 0
+    display-name: "&6&l✦ Divine Cod ✦"
     amount: 1
     lore:
-      - "&5EPIC"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &6&lLEGENDARY"
       - ""
-      - "&dAn eye that sees through"
-      - "&dthe darkest waters"
+      - "&eA fish blessed by the gods!"
+      - "&7Those who possess it are"
+      - "&7said to have infinite luck."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
       - ""
-      - "&5&oEpic Warzone Fishing"
-    chance: 2.0
-    rarity: EPIC
-    title-message: "&5&lEPIC EYE!"
-    subtitle-message: "&d&lEye of the Deep!"
-    sound: WITHER_SPAWN
-    sound-pitch: 1.5
-    sound-volume: 0.5
-    broadcast: true
-    broadcast-message: "&5&l[EPIC] &d{player} &7found an &5Eye of the Deep&7!"
-
-  ancient_anchor_fragments:
-    material: IRON_BLOCK
-    display-name: "&5&lAncient Anchor Fragments"
-    amount: 1
-    lore:
-      - "&5EPIC"
-      - ""
-      - "&dPieces of legendary anchors"
-      - "&7From ships long lost"
-      - ""
-      - "&5&oEpic Warzone Fishing"
-    chance: 2.5
-    rarity: EPIC
-    title-message: "&5&lEPIC FIND!"
-    subtitle-message: "&d&lAnchor Fragments!"
-    sound: ANVIL_LAND
-    sound-pitch: 0.8
-    sound-volume: 0.8
-    broadcast: true
-    broadcast-message: "&5&l[EPIC] &d{player} &7pulled up &5Ancient Anchor Fragments&7!"
-
-  # ============ LEGENDARY ITEMS ============
-  oceans_treasury:
-    material: DIAMOND_BLOCK
-    display-name: "&6&l✦ Ocean's Treasury ✦"
-    amount: 1
-    lore:
-      - "&6&lLEGENDARY"
-      - ""
-      - "&eDiamonds from the deepest"
-      - "&etreasure chests of the sea"
-      - ""
-      - "&6&oLegendary Warzone Fishing"
-    chance: 0.5
+      - "&8&o「 Warzone Fishing Legendary 」"
+    nbt:
+      warzone_rarity: "legendary"
+      warzone_fish: true
+      sell_value: 5000
+    glow: true
+    chance: 0.4
     rarity: LEGENDARY
+    required-level: 13
     title-message: "&6&l✦ LEGENDARY ✦"
-    subtitle-message: "&e&lOcean's Treasury!"
+    subtitle-message: "&e&l✦ Divine Cod ✦"
     sound: ENDERDRAGON_GROWL
     sound-pitch: 0.8
     sound-volume: 1.0
     broadcast: true
-    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &7has found &6&lOcean's Treasury&7!"
+    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &fcaught the &6&lDivine Cod&f!"
 
-  poseidons_fortune:
-    material: EMERALD_BLOCK
-    display-name: "&6&l✦ Poseidon's Fortune ✦"
+  legendary_salmon:
+    material: RAW_FISH
+    data: 1
+    display-name: "&6&l✦ Poseidon's Salmon ✦"
     amount: 1
     lore:
-      - "&6&lLEGENDARY"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &6&lLEGENDARY"
       - ""
-      - "&eEmeralds blessed by"
-      - "&ethe god of the sea"
+      - "&eThe personal fish of Poseidon!"
+      - "&7Swam through the depths"
+      - "&7of the ocean god's realm."
+      - "&8━━━━━━━━━━━━━━━━━━━━"
       - ""
-      - "&6&oLegendary Warzone Fishing"
-    chance: 0.5
-    rarity: LEGENDARY
-    title-message: "&6&l✦ LEGENDARY ✦"
-    subtitle-message: "&e&lPoseidon's Fortune!"
-    sound: ENDERDRAGON_GROWL
-    sound-pitch: 0.9
-    sound-volume: 1.0
-    broadcast: true
-    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &7claimed &6&lPoseidon's Fortune&7!"
-
-  sunken_treasure:
-    material: GOLD_BLOCK
-    display-name: "&6&l✦ Sunken Treasure ✦"
-    amount: 1
-    lore:
-      - "&6&lLEGENDARY"
-      - ""
-      - "&eGold from an ancient"
-      - "&eshipwreck treasure room"
-      - ""
-      - "&6&oLegendary Warzone Fishing"
-    chance: 0.6
-    rarity: LEGENDARY
-    title-message: "&6&l✦ LEGENDARY ✦"
-    subtitle-message: "&e&lSunken Treasure!"
-    sound: ENDERDRAGON_GROWL
-    sound-pitch: 1.0
-    sound-volume: 1.0
-    broadcast: true
-    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &7discovered &6&lSunken Treasure&7!"
-
-  sea_dragons_egg:
-    material: DRAGON_EGG
-    display-name: "&6&l✦ Sea Dragon's Egg ✦"
-    lore:
-      - "&6&lLEGENDARY"
-      - ""
-      - "&eAn egg from the mythical"
-      - "&eSea Dragon of the depths"
-      - ""
-      - "&c&lEXTREMELY RARE!"
-      - ""
-      - "&6&oLegendary Warzone Fishing"
-    chance: 0.1
-    rarity: LEGENDARY
-    title-message: "&6&l✦ LEGENDARY ✦"
-    subtitle-message: "&c&l✦ SEA DRAGON'S EGG ✦"
-    sound: ENDERDRAGON_GROWL
-    sound-pitch: 0.5
-    sound-volume: 1.0
-    broadcast: true
-    broadcast-message: "&6&l✦ LEGENDARY ✦ &c&lINCREDIBLE! &e{player} &7found the &6&l✦ Sea Dragon's Egg ✦&7!"
-
-  constellation_fragment:
-    material: NETHER_STAR
-    display-name: "&6&l✦ Constellation Fragment ✦"
-    amount: 1
-    lore:
-      - "&6&lLEGENDARY"
-      - ""
-      - "&ePieces of fallen stars"
-      - "&egathered from the abyss"
-      - ""
-      - "&6&oLegendary Warzone Fishing"
+      - "&8&o「 Warzone Fishing Legendary 」"
+    nbt:
+      warzone_rarity: "legendary"
+      warzone_fish: true
+      sell_value: 6000
+    glow: true
     chance: 0.3
     rarity: LEGENDARY
+    required-level: 13
     title-message: "&6&l✦ LEGENDARY ✦"
-    subtitle-message: "&e&lConstellation Fragment!"
+    subtitle-message: "&e&l✦ Poseidon's Salmon ✦"
     sound: ENDERDRAGON_GROWL
-    sound-pitch: 1.2
+    sound-pitch: 0.8
     sound-volume: 1.0
     broadcast: true
-    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &7found a &6&lConstellation Fragment&7!"
+    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &fcaught &6&lPoseidon's Salmon&f!"
 
-  atlantis_beacon:
-    material: BEACON
-    display-name: "&6&l✦ Atlantis Beacon ✦"
+  poseidons_trident:
+    material: DIAMOND_SWORD
+    display-name: "&6&l✦ Poseidon's Trident ✦"
     amount: 1
     lore:
-      - "&6&lLEGENDARY"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &6&lLEGENDARY"
       - ""
-      - "&eA beacon from the lost city"
-      - "&eof Atlantis itself"
+      - "&eThe weapon of the sea god"
+      - "&7Lost during an ancient war"
       - ""
-      - "&6&oLegendary Warzone Fishing"
-    chance: 0.2
+      - "&6Ability: &eStrike with ocean fury!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&8&o「 Warzone Fishing Legendary 」"
+    enchantments:
+      DAMAGE_ALL: 5
+      FIRE_ASPECT: 2
+      KNOCKBACK: 2
+      DURABILITY: 3
+      LOOT_BONUS_MOBS: 3
+    unbreakable: true
+    hide-flags: true
+    nbt:
+      warzone_legendary: true
+      warzone_item: "poseidons_trident"
+      sell_value: 25000
+    chance: 0.1
     rarity: LEGENDARY
+    required-level: 14
     title-message: "&6&l✦ LEGENDARY ✦"
-    subtitle-message: "&e&lAtlantis Beacon!"
+    subtitle-message: "&e&lPoseidon's Trident!"
     sound: ENDERDRAGON_GROWL
-    sound-pitch: 0.7
+    sound-pitch: 0.6
     sound-volume: 1.0
     broadcast: true
-    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &7unearthed an &6&lAtlantis Beacon&7!"
+    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &fobtained &6&lPoseidon's Trident&f!"
+
+  # Sakura Crate Key (Level 13+)
+  sakura_crate_key:
+    material: TRIPWIRE_HOOK
+    display-name: "&d&l✦ Sakura Crate Key ✦"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &6&lLEGENDARY"
+      - ""
+      - "&dA key to the Sakura crate!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    chance: 0.2
+    rarity: LEGENDARY
+    required-level: 13
+    title-message: "&d&l✦ CRATE KEY ✦"
+    subtitle-message: "&d&lSakura Key"
+    sound: ENDERDRAGON_GROWL
+    sound-pitch: 0.8
+    sound-volume: 1.0
+    broadcast: true
+    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &ffished up a &d&lSakura Crate Key&f!"
+    commands:
+      - "pcrate giveKey sakura {player} 1"
+
+  # OG Crate Key (Level 14+)
+  og_crate_key:
+    material: TRIPWIRE_HOOK
+    display-name: "&6&l✦ OG Crate Key ✦"
+    amount: 1
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &6&lLEGENDARY"
+      - ""
+      - "&6A key to the OG crate!"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+    chance: 0.1
+    rarity: LEGENDARY
+    required-level: 14
+    title-message: "&6&l✦ CRATE KEY ✦"
+    subtitle-message: "&6&lOG Key"
+    sound: ENDERDRAGON_GROWL
+    sound-pitch: 0.6
+    sound-volume: 1.0
+    broadcast: true
+    broadcast-message: "&6&l✦ LEGENDARY ✦ &e{player} &ffished up an &6&lOG Crate Key&f!"
+    commands:
+      - "pcrate giveKey og {player} 1"
+
+  # Golden Fish Trophy (Level 14 - Guardian Mask required)
+  golden_fish_trophy:
+    material: SKULL_ITEM
+    data: 3
+    display-name: "&6&l✦ Golden Fish Trophy ✦"
+    amount: 1
+    skull-texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjIxNjY4ZWY3Y2I3OWRkOWMyMmNlM2QxZjNmNGNiNmUyNTU5ODkzYjZkZjRhNDY5NTE0ZTY2N2MxNmFhNCJ9fX0="
+    lore:
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - "&7Rarity: &6&lLEGENDARY"
+      - ""
+      - "&eA golden fish trophy!"
+      - "&7Display of a master angler."
+      - ""
+      - "&d⚡ Requires Guardian Mask"
+      - "&8━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&8&o「 Warzone Fishing Trophy 」"
+    nbt:
+      warzone_trophy: true
+      sell_value: 10000
+    chance: 0.15
+    rarity: LEGENDARY
+    required-level: 14
+    requires-guardian-mask: true
+    title-message: "&6&l✦ TROPHY ✦"
+    subtitle-message: "&e&lGolden Fish Trophy!"
+    sound: ENDERDRAGON_GROWL
+    sound-pitch: 1.0
+    sound-volume: 0.8
+    broadcast: true
+    broadcast-message: "&6&l✦ TROPHY ✦ &e{player} &fwon a &6&lGolden Fish Trophy&f!"
