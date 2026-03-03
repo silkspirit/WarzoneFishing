@@ -211,13 +211,25 @@ public class WarzoneFishingCommand implements CommandExecutor, TabCompleter {
         
         // Give reward(s)
         if (reward.hasItem()) {
+            int dropped = 0;
             for (int i = 0; i < amount; i++) {
                 ItemStack item = reward.createItemStack();
-                target.getInventory().addItem(item);
+                if (target.getInventory().firstEmpty() != -1) {
+                    target.getInventory().addItem(item);
+                } else {
+                    target.getWorld().dropItemNaturally(target.getLocation(), item);
+                    dropped++;
+                }
             }
             sender.sendMessage(MessageUtils.color(MessageUtils.PREFIX + 
                     "&aGave &f" + amount + "x " + reward.getItemDisplayName() + 
                     " &ato &b" + target.getName()));
+            if (dropped > 0) {
+                sender.sendMessage(MessageUtils.color(MessageUtils.PREFIX + 
+                        "&e" + dropped + " item(s) dropped at feet (inventory full)."));
+                target.sendMessage(MessageUtils.color(MessageUtils.PREFIX + 
+                        "&cInventory full! " + dropped + " item(s) dropped at your feet."));
+            }
         }
         
         // Execute commands

@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -61,8 +62,8 @@ public class FishingListener implements Listener {
             return;
         }
         
-        // Get random reward
-        FishingReward reward = plugin.getRewardManager().getRandomReward();
+        // Get random reward (filtered by player level and mask requirements)
+        FishingReward reward = plugin.getRewardManager().getRandomReward(player);
         if (reward == null) {
             plugin.getLogger().warning("No rewards configured! Using default catch.");
             return;
@@ -113,6 +114,19 @@ public class FishingListener implements Listener {
         int cooldownSeconds = plugin.getConfig().getInt("settings.cooldown", 0);
         if (cooldownSeconds <= 0) {
             return true;
+        }
+        
+        // Clean up stale cooldown entries to prevent memory leak
+        if (cooldowns.size() > 100) {
+            long now = System.currentTimeMillis();
+            long expiry = cooldownSeconds * 2000L;
+            Iterator<Map.Entry<UUID, Long>> it = cooldowns.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<UUID, Long> entry = it.next();
+                if (now - entry.getValue() > expiry) {
+                    it.remove();
+                }
+            }
         }
         
         UUID uuid = player.getUniqueId();

@@ -1,12 +1,14 @@
 package com.warzonefishing.managers;
 
 import com.warzonefishing.WarzoneFishing;
+import com.warzonefishing.hooks.HeadHuntingHook;
 import com.warzonefishing.models.FishingReward;
 import com.warzonefishing.models.FishingReward.RewardType;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 
 import java.util.*;
 
@@ -229,7 +231,7 @@ public class RewardManager {
     }
     
     /**
-     * Get a random reward based on weights
+     * Get a random reward based on weights (no level filtering)
      * @return A randomly selected reward, or null if no rewards
      */
     public FishingReward getRandomReward() {
@@ -249,6 +251,71 @@ public class RewardManager {
         
         // Fallback to last reward (shouldn't happen)
         return rewards.get(rewards.size() - 1);
+    }
+    
+    /**
+     * Get a random reward filtered by player level and mask requirements.
+     * Uses HeadHuntingHook to filter out rewards the player doesn't qualify for
+     * and applies guardian mask luck bonuses to effective weights.
+     * Falls back to unfiltered selection if HeadHunting isn't installed.
+     * 
+     * @param player The player to select a reward for
+     * @return A randomly selected reward the player qualifies for, or null if none
+     */
+    public FishingReward getRandomReward(Player player) {
+        if (rewards.isEmpty() || totalWeight <= 0) {
+            return null;
+        }
+        
+        HeadHuntingHook hook = WarzoneFishing.getInstance().getHeadHuntingHook();
+        
+        // Fall back to old behavior if HeadHunting isn't installed
+        if (hook == null || !hook.isEnabled()) {
+            return getRandomReward();
+        }
+        
+        // Build list of eligible rewards with effective weights
+        List<FishingReward> eligible = new ArrayList<>();
+        List<Double> effectiveWeights = new ArrayList<>();
+        double totalEffective = 0.0;
+        
+        for (FishingReward reward : rewards) {
+            // Check guardian mask requirement separately
+            if (reward.requiresGuardianMask() && !hook.hasGuardianMask(player)) {
+                continue;
+            }
+            
+            double weight = hook.calculateEffectiveWeight(
+                    reward.getChance(),
+                    reward.getRarity(),
+                    reward.getRequiredLevel(),
+                    player
+            );
+            
+            if (weight > 0) {
+                eligible.add(reward);
+                effectiveWeights.add(weight);
+                totalEffective += weight;
+            }
+        }
+        
+        if (eligible.isEmpty() || totalEffective <= 0) {
+            return null;
+        }
+        
+        // Weighted random selection on effective weights
+        double roll = random.nextDouble() * totalEffective;
+        double cumulative = 0.0;
+        
+        for (int i = 0; i < eligible.size(); i++) {
+            cumulative += effectiveWeights.get(i);
+            if (roll < cumulative) {
+                return eligible.get(i);
+            }
+        }
+        
+        // Fallback to last eligible reward
+        return eligible.get(eligible.size() - 1);
     }
     
     /**
