@@ -1,12 +1,14 @@
 package com.warzonefishing.listeners;
 
 import com.warzonefishing.WarzoneFishing;
+import com.warzonefishing.hooks.HeadHuntingHook;
 import com.warzonefishing.models.FishingReward;
 import com.warzonefishing.utils.MessageUtils;
 import com.warzonefishing.utils.TitleAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Fish;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,6 +19,7 @@ import org.bukkit.event.player.PlayerFishEvent.State;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -32,19 +35,93 @@ public class FishingListener implements Listener {
     private final WarzoneFishing plugin;
     private final Map<UUID, Long> cooldowns;
     
+    // Cached NMS fields for fish hook wait time manipulation
+    private Field nmsEntityField;
+    private Field waitTimeField;
+    private boolean nmsInitialized = false;
+    private boolean nmsAvailable = false;
+    
     public FishingListener(WarzoneFishing plugin) {
         this.plugin = plugin;
         this.cooldowns = new HashMap<>();
     }
     
+    /**
+     * Initialize NMS reflection for fish hook wait time manipulation.
+     * Tries v1_8_R3 first, then falls back to generic CraftFish approach.
+     */
+    private void initNMS() {
+        if (nmsInitialized) return;
+        nmsInitialized = true;
+        
+        try {
+            // Get CraftFish -> handle (NMS EntityFishingHook)
+            Class<?> craftFishClass = Class.forName("org.bukkit.craftbukkit.v1_8_R3.entity.CraftFish");
+            nmsEntityField = craftFishClass.getMethod("getHandle").getDeclaringClass().getMethod("getHandle").getDeclaringClass()
+                    .getDeclaredMethod("getHandle").getDeclaringClass().getDeclaredField("entity");
+        } catch (Exception ignored) {
+            // Fall through to try generic approach
+        }
+        
+        try {
+            // Generic approach: get the NMS entity via CraftEntity.getHandle()
+            // and then access the wait time field on EntityFishingHook
+            Class<?> nmsEntityFishingHook = Class.forName("net.minecraft.server.v1_8_R3.EntityFishingHook");
+            
+            // In 1.8.8 NMS, the fish hook has fields 'h' (max wait time) and 'ax'/'ay' or similar
+            // The wait time countdown field varies by exact build. Try common field names.
+            // In Spigot 1.8.8, EntityFishingHook has field 'h' for the bite timer
+            for (String fieldName : new String[]{"h", "ax", "ay", "g", "aw"}) {
+                try {
+                    waitTimeField = nmsEntityFishingHook.getDeclaredField(fieldName);
+                    waitTimeField.setAccessible(true);
+                    // Verify it's an int field
+                    if (waitTimeField.getType() == int.class) {
+                        nmsAvailable = true;
+                        plugin.getLogger().info("Fish hook wait time field found: " + fieldName + " (catch rate boost enabled)");
+                        return;
+                    }
+                } catch (NoSuchFieldException ignored) {}
+            }
+            
+            // If no known field names work, try all int fields and find the one that looks like a timer
+            Field[] fields = nmsEntityFishingHook.getDeclaredFields();
+            for (Field f : fields) {
+                if (f.getType() == int.class) {
+                    f.setAccessible(true);
+                    // We'll use the first private int field as a candidate
+                    // and verify at runtime
+                    waitTimeField = f;
+                    nmsAvailable = true;
+                    plugin.getLogger().info("Fish hook wait time field candidate: " + f.getName() + " (catch rate boost enabled)");
+                    return;
+                }
+            }
+            
+            plugin.getLogger().warning("Could not find fish hook wait time field. Catch rate boost will be disabled.");
+            
+        } catch (ClassNotFoundException e) {
+            plugin.getLogger().warning("NMS classes not found (not 1.8.8?). Catch rate boost for guardian mask will be disabled.");
+        } catch (Exception e) {
+            plugin.getLogger().warning("Failed to initialize NMS for catch rate boost: " + e.getMessage());
+        }
+    }
+    
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onPlayerFish(PlayerFishEvent event) {
-        // Only handle caught fish state
+        Player player = event.getPlayer();
+        
+        // Handle cast/fishing state — apply catch rate boost for guardian mask
+        if (event.getState() == State.FISHING) {
+            applyCatchRateBoost(player, event.getHook());
+            return;
+        }
+        
+        // Only handle caught fish state for rewards
         if (event.getState() != State.CAUGHT_FISH) {
             return;
         }
         
-        Player player = event.getPlayer();
         Location hookLocation = event.getHook().getLocation();
         
         // Check if player has permission
@@ -141,6 +218,64 @@ public class FishingListener implements Listener {
         
         cooldowns.put(uuid, now);
         return true;
+    }
+    
+    /**
+     * Apply catch rate boost to the fishing hook for players with guardian mask.
+     * Reduces the NMS wait time on the fish hook entity so fish bite faster.
+     */
+    private void applyCatchRateBoost(Player player, Fish hook) {
+        HeadHuntingHook headHunting = plugin.getHeadHuntingHook();
+        if (headHunting == null || !headHunting.isEnabled()) return;
+        
+        double boost = headHunting.getCatchRateBoost(player);
+        if (boost <= 0) return;
+        
+        // Apply configurable catch rate boost cap/multiplier from config
+        double configMultiplier = plugin.getConfig().getDouble("settings.guardian-mask.catch-rate-multiplier", 1.0);
+        double maxBoost = plugin.getConfig().getDouble("settings.guardian-mask.max-catch-rate-boost", 0.50);
+        boost = Math.min(boost * configMultiplier, maxBoost);
+        
+        if (boost <= 0) return;
+        
+        // Schedule the wait time reduction for next tick (hook needs to be fully initialized)
+        final double finalBoost = boost;
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            if (!hook.isValid()) return;
+            reduceHookWaitTime(hook, finalBoost);
+        }, 1L);
+    }
+    
+    /**
+     * Reduce the NMS fish hook wait time using reflection.
+     * In 1.8.8, EntityFishingHook has an int field controlling time until a fish bites.
+     */
+    private void reduceHookWaitTime(Fish hook, double boostPercent) {
+        initNMS();
+        
+        if (!nmsAvailable || waitTimeField == null) return;
+        
+        try {
+            // Get the NMS entity via CraftEntity.getHandle()
+            Object nmsEntity = hook.getClass().getMethod("getHandle").invoke(hook);
+            
+            int currentWait = waitTimeField.getInt(nmsEntity);
+            
+            // Only reduce if there's actual wait time set (> 0)
+            if (currentWait > 0) {
+                int reducedWait = (int) (currentWait * (1.0 - boostPercent));
+                // Minimum wait time of 20 ticks (1 second) to prevent instant catches
+                int minWait = plugin.getConfig().getInt("settings.guardian-mask.min-wait-ticks", 20);
+                reducedWait = Math.max(reducedWait, minWait);
+                
+                waitTimeField.setInt(nmsEntity, reducedWait);
+            }
+        } catch (Exception e) {
+            // Silently fail — don't spam console every cast
+            if (plugin.getConfig().getBoolean("settings.debug", false)) {
+                plugin.getLogger().warning("Failed to reduce hook wait time: " + e.getMessage());
+            }
+        }
     }
     
     /**

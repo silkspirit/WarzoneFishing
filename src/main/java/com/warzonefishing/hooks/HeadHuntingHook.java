@@ -118,10 +118,12 @@ public class HeadHuntingHook {
     }
     
     /**
-     * Calculate effective weight for a reward based on player level and mask
+     * Calculate effective weight for a reward based on player level.
+     * Guardian mask luck bonus no longer affects drop weights — it now
+     * increases catch rate (fish bite faster) instead.
      * 
      * @param baseWeight The base chance weight
-     * @param rarity The rarity of the reward
+     * @param rarity The rarity of the reward (unused, kept for API compat)
      * @param requiredLevel Level required (0 = no requirement)
      * @param player The player to calculate for
      * @return The effective weight (0 if player can't get this reward)
@@ -136,18 +138,24 @@ public class HeadHuntingHook {
             return 0;
         }
         
-        double weight = baseWeight;
-        
-        // Apply luck bonus for guardian mask on rare+ items
-        if (hasGuardianMask(player)) {
-            int luckBonus = getFishingLuckBonus(player);
-            if (rarity != null && (rarity.equalsIgnoreCase("RARE") || 
-                rarity.equalsIgnoreCase("EPIC") || 
-                rarity.equalsIgnoreCase("LEGENDARY"))) {
-                weight *= (1.0 + luckBonus / 100.0);
-            }
+        // Return base weight — no luck bonus applied to drop rates anymore
+        // Guardian mask bonus now speeds up catch rate via FishingListener
+        return baseWeight;
+    }
+    
+    /**
+     * Get the catch rate boost multiplier for a player with guardian mask.
+     * This reduces the fishing hook wait time, making fish bite faster.
+     * 
+     * @param player The player to check
+     * @return Catch rate boost as a decimal (e.g. 0.25 = 25% faster catches), 0 if no boost
+     */
+    public double getCatchRateBoost(Player player) {
+        if (!enabled || !hasGuardianMask(player)) {
+            return 0.0;
         }
         
-        return weight;
+        int luckBonus = getFishingLuckBonus(player);
+        return luckBonus / 100.0;
     }
 }

@@ -5,7 +5,7 @@
 #    \ V  V / (_| | |   / / (_) | | | |  __/  _| | \__ \ | | | | | | | (_| |
 #     \_/\_/ \__,_|_|  /___\___/|_| |_|\___|_|   |_|___/_| |_|_|_| |_|\__, |
 #                                                                     |___/ 
-#  Version 2.1.0 - Level-Based Rewards with Phoenix Crate Keys
+#  Version 2.3.0 - Guardian Mask Catch Rate Boost
 # ═══════════════════════════════════════════════════════════════════════════════
 # 
 # FEATURES:
@@ -42,6 +42,21 @@ settings:
   title-stay: 40
   title-fade-out: 10
   action-bar-message: "&b+1 &f{item}"
+  debug: false
+  
+  # Guardian Mask Catch Rate Boost
+  # Players with a guardian/elder_guardian mask from HeadHunting fish faster.
+  # The luck bonus % from HeadHunting is applied as a catch speed increase.
+  # Example: 25% luck bonus = fish bite 25% faster (wait time reduced by 25%)
+  guardian-mask:
+    # Multiplier applied to the HeadHunting luck bonus for catch rate
+    # 1.0 = use raw luck bonus, 0.5 = halve the bonus, 2.0 = double it
+    catch-rate-multiplier: 1.0
+    # Maximum catch rate boost (0.50 = 50% max wait time reduction)
+    max-catch-rate-boost: 0.50
+    # Minimum wait ticks before a fish can bite (prevents instant catches)
+    # 20 ticks = 1 second minimum wait time
+    min-wait-ticks: 20
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # COMMON FISH - No Level Requirement (45% total)

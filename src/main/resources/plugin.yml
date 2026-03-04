@@ -12,6 +12,7 @@ softdepend:
   - Vault
   - PhoenixCrates
   - ShopGUIPlus
+  - HeadHunting
 
 commands:
   warzonefishing:
