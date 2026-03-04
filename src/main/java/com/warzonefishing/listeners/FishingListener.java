@@ -221,28 +221,52 @@ public class FishingListener implements Listener {
     }
     
     /**
-     * Apply catch rate boost to the fishing hook for players with guardian mask.
-     * Reduces the NMS wait time on the fish hook entity so fish bite faster.
+     * Apply catch rate boost to the fishing hook by combining ALL three boost sources:
+     * 1. Guardian mask bonus (player-specific, from HeadHunting ability)
+     * 2. Server-wide hourly boost event (from HeadHunting FishingManager)
+     * 3. Personal/faction fishing booster (from HeadHunting BoosterManager)
+     * 
+     * All three are combined multiplicatively to determine total wait time reduction.
      */
     private void applyCatchRateBoost(Player player, Fish hook) {
         HeadHuntingHook headHunting = plugin.getHeadHuntingHook();
         if (headHunting == null || !headHunting.isEnabled()) return;
         
-        double boost = headHunting.getCatchRateBoost(player);
-        if (boost <= 0) return;
-        
-        // Apply configurable catch rate boost cap/multiplier from config
+        // Source 1: Guardian mask catch rate boost (e.g. 0.25 = 25% faster)
+        double maskBoost = headHunting.getCatchRateBoost(player);
         double configMultiplier = plugin.getConfig().getDouble("settings.guardian-mask.catch-rate-multiplier", 1.0);
-        double maxBoost = plugin.getConfig().getDouble("settings.guardian-mask.max-catch-rate-boost", 0.50);
-        boost = Math.min(boost * configMultiplier, maxBoost);
+        double maxMaskBoost = plugin.getConfig().getDouble("settings.guardian-mask.max-catch-rate-boost", 0.50);
+        maskBoost = Math.min(maskBoost * configMultiplier, maxMaskBoost);
+        // Convert to multiplier: 0.25 boost → 1.25x speed → wait time = 1/1.25
+        double maskMultiplier = 1.0 + Math.max(maskBoost, 0.0);
         
-        if (boost <= 0) return;
+        // Source 2: Server-wide hourly boost event multiplier (e.g. 2.0 = 2x faster)
+        double serverMultiplier = headHunting.getServerBoostMultiplier();
+        
+        // Source 3: Personal/faction fishing booster multiplier (e.g. 1.5 = 1.5x faster)
+        double personalMultiplier = headHunting.getPersonalFishingBoostMultiplier(player);
+        
+        // Combine all three multiplicatively
+        double totalMultiplier = maskMultiplier * serverMultiplier * personalMultiplier;
+        
+        // No boost needed if total is 1.0 or less
+        if (totalMultiplier <= 1.0) return;
+        
+        // Convert multiplier to wait time reduction fraction
+        // e.g. 2x speed → wait time = 1/2 → reduction = 0.50
+        double reduction = 1.0 - (1.0 / totalMultiplier);
+        
+        // Cap reduction at 90% to prevent near-instant catches
+        double maxReduction = plugin.getConfig().getDouble("settings.max-catch-rate-reduction", 0.90);
+        reduction = Math.min(reduction, maxReduction);
+        
+        if (reduction <= 0) return;
         
         // Schedule the wait time reduction for next tick (hook needs to be fully initialized)
-        final double finalBoost = boost;
+        final double finalReduction = reduction;
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             if (!hook.isValid()) return;
-            reduceHookWaitTime(hook, finalBoost);
+            reduceHookWaitTime(hook, finalReduction);
         }, 1L);
     }
     

@@ -15,10 +15,14 @@ public class HeadHuntingHook {
     private Plugin headHunting;
     private Object dataManager;
     private Object abilityHandler;
+    private Object fishingManager;
+    private Object boosterManager;
     private Method getPlayerDataMethod;
     private Method getLevelMethod;
     private Method getEquippedMaskMethod;
     private Method getFishingLuckBonusMethod;
+    private Method getBoostMultiplierMethod;
+    private Method getFishingMultiplierMethod;
     
     public HeadHuntingHook() {
         this.enabled = setupHook();
@@ -42,6 +46,24 @@ public class HeadHuntingHook {
                 getFishingLuckBonusMethod = abilityHandler.getClass().getMethod("getFishingLuckBonus", Player.class);
             } catch (Exception e) {
                 // AbilityHandler might not exist, that's fine
+            }
+            
+            // Get FishingManager for server-wide boost event multiplier
+            try {
+                Method getFishingManagerMethod = headHunting.getClass().getMethod("getFishingManager");
+                fishingManager = getFishingManagerMethod.invoke(headHunting);
+                getBoostMultiplierMethod = fishingManager.getClass().getMethod("getBoostMultiplier");
+            } catch (Exception e) {
+                // FishingManager might not exist
+            }
+            
+            // Get BoosterManager for personal/faction fishing boosters
+            try {
+                Method getBoosterManagerMethod = headHunting.getClass().getMethod("getBoosterManager");
+                boosterManager = getBoosterManagerMethod.invoke(headHunting);
+                getFishingMultiplierMethod = boosterManager.getClass().getMethod("getFishingMultiplier", Player.class);
+            } catch (Exception e) {
+                // BoosterManager might not exist
             }
             
             // Get PlayerData methods
@@ -157,5 +179,43 @@ public class HeadHuntingHook {
         
         int luckBonus = getFishingLuckBonus(player);
         return luckBonus / 100.0;
+    }
+    
+    /**
+     * Get the server-wide fishing boost event catch rate multiplier.
+     * When the hourly boost event is active, this returns the configured multiplier (e.g. 2.0).
+     * When inactive, returns 1.0 (no boost).
+     * 
+     * @return Catch rate multiplier from server boost event (1.0 = no boost)
+     */
+    public double getServerBoostMultiplier() {
+        if (!enabled || fishingManager == null || getBoostMultiplierMethod == null) {
+            return 1.0;
+        }
+        
+        try {
+            return (double) getBoostMultiplierMethod.invoke(fishingManager);
+        } catch (Exception e) {
+            return 1.0;
+        }
+    }
+    
+    /**
+     * Get the personal/faction fishing booster multiplier for a player.
+     * This combines personal + faction FISHING type boosters from HeadHunting's BoosterManager.
+     * 
+     * @param player The player to check
+     * @return Combined fishing booster multiplier (1.0 = no boost)
+     */
+    public double getPersonalFishingBoostMultiplier(Player player) {
+        if (!enabled || boosterManager == null || getFishingMultiplierMethod == null) {
+            return 1.0;
+        }
+        
+        try {
+            return (double) getFishingMultiplierMethod.invoke(boosterManager, player);
+        } catch (Exception e) {
+            return 1.0;
+        }
     }
 }

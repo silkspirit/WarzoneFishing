@@ -5,7 +5,7 @@
 #    \ V  V / (_| | |   / / (_) | | | |  __/  _| | \__ \ | | | | | | | (_| |
 #     \_/\_/ \__,_|_|  /___\___/|_| |_|\___|_|   |_|___/_| |_|_|_| |_|\__, |
 #                                                                     |___/ 
-#  Version 2.3.0 - Guardian Mask Catch Rate Boost
+#  Version 2.4.1 - Fishing Booster Stacking
 # ═══════════════════════════════════════════════════════════════════════════════
 # 
 # FEATURES:
@@ -57,6 +57,11 @@ settings:
     # Minimum wait ticks before a fish can bite (prevents instant catches)
     # 20 ticks = 1 second minimum wait time
     min-wait-ticks: 20
+  
+  # Maximum total catch rate reduction from ALL sources combined
+  # (guardian mask + server boost event + personal/faction fishing booster)
+  # 0.90 = 90% max wait time reduction (catches can be up to 10x faster at most)
+  max-catch-rate-reduction: 0.90
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # COMMON FISH - No Level Requirement (45% total)
