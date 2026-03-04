@@ -255,8 +255,8 @@ public class RewardManager {
     
     /**
      * Get a random reward filtered by player level and mask requirements.
-     * Uses HeadHuntingHook to filter out rewards the player doesn't qualify for
-     * and applies guardian mask luck bonuses to effective weights.
+     * Uses HeadHuntingHook to filter out rewards the player doesn't qualify for.
+     * Drop weights are NOT modified by any boosts — all boosts affect catch rate only.
      * Falls back to unfiltered selection if HeadHunting isn't installed.
      * 
      * @param player The player to select a reward for
