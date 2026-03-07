@@ -3,6 +3,7 @@ package com.warzonefishing.gui;
 import com.warzonefishing.WarzoneFishing;
 import com.warzonefishing.hooks.HeadHuntingHook;
 import com.warzonefishing.models.FishingReward;
+import com.warzonefishing.stats.CatchStatistics;
 import com.warzonefishing.utils.MessageUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -434,6 +435,17 @@ public class FishingGUI implements Listener {
             lore.add(MessageUtils.color("&7Sell Price: &6$" + formatNumber(sellValue)));
         }
         
+        // Collection/discovery marker
+        CatchStatistics catchStats = plugin.getCatchStatistics();
+        if (catchStats != null) {
+            int catchCount = catchStats.getCatchCount(player.getUniqueId(), reward.getId());
+            if (catchCount > 0) {
+                lore.add(MessageUtils.color("&a\u2713 Caught (x" + catchCount + ")"));
+            } else {
+                lore.add(MessageUtils.color("&8\u2717 Not yet discovered"));
+            }
+        }
+        
         // Type indicator
         if (!reward.getCommands().isEmpty()) {
             lore.add("");
@@ -441,7 +453,7 @@ public class FishingGUI implements Listener {
         }
         
         if (reward.isBroadcast()) {
-            lore.add(MessageUtils.color("&e✦ Server Broadcast"));
+            lore.add(MessageUtils.color("&e\u2726 Server Broadcast"));
         }
         
         meta.setLore(lore);

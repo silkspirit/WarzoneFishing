@@ -2,6 +2,8 @@ package com.warzonefishing.commands;
 
 import com.warzonefishing.WarzoneFishing;
 import com.warzonefishing.models.FishingReward;
+import com.warzonefishing.stats.CatchStatistics;
+import com.warzonefishing.stats.PlayerCatchStats;
 import com.warzonefishing.utils.MessageUtils;
 import com.warzonefishing.utils.TitleAPI;
 import org.bukkit.Bukkit;
@@ -11,10 +13,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -32,7 +33,7 @@ public class WarzoneFishingCommand implements CommandExecutor, TabCompleter {
     
     private final WarzoneFishing plugin;
     private final List<String> subCommands = Arrays.asList(
-            "menu", "reload", "list", "give", "test", "preview", "info"
+            "menu", "reload", "list", "give", "test", "preview", "info", "stats", "top"
     );
     private final List<String> rarities = Arrays.asList(
             "COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY"
@@ -78,6 +79,12 @@ public class WarzoneFishingCommand implements CommandExecutor, TabCompleter {
             case "info":
                 handleInfo(sender);
                 break;
+            case "stats":
+                handleStats(sender, args);
+                break;
+            case "top":
+                handleTop(sender);
+                break;
             default:
                 sendHelp(sender, label);
                 break;
@@ -98,6 +105,8 @@ public class WarzoneFishingCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage(MessageUtils.color("&b/" + label + " test &7- Test random reward"));
         sender.sendMessage(MessageUtils.color("&b/" + label + " preview <reward> &7- Preview reward"));
         sender.sendMessage(MessageUtils.color("&b/" + label + " info &7- Plugin information"));
+        sender.sendMessage(MessageUtils.color("&b/" + label + " stats [player] &7- Fishing statistics"));
+        sender.sendMessage(MessageUtils.color("&b/" + label + " top &7- Top fishers leaderboard"));
         sender.sendMessage(MessageUtils.createFooter());
     }
     
@@ -388,6 +397,115 @@ public class WarzoneFishingCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage(MessageUtils.createFooter());
     }
     
+    /**
+     * Handle stats command — show personal fishing statistics
+     */
+    private void handleStats(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("warzonefishing.stats")) {
+            sender.sendMessage(MessageUtils.color(MessageUtils.PREFIX + "&cNo permission!"));
+            return;
+        }
+        
+        // Determine target player
+        Player target;
+        if (args.length > 1) {
+            target = Bukkit.getPlayer(args[1]);
+            if (target == null) {
+                sender.sendMessage(MessageUtils.color(MessageUtils.PREFIX + "&cPlayer not found: &f" + args[1]));
+                return;
+            }
+        } else if (sender instanceof Player) {
+            target = (Player) sender;
+        } else {
+            sender.sendMessage(MessageUtils.color(MessageUtils.PREFIX + "&cUsage: /wf stats <player>"));
+            return;
+        }
+        
+        CatchStatistics catchStats = plugin.getCatchStatistics();
+        if (catchStats == null) {
+            sender.sendMessage(MessageUtils.color(MessageUtils.PREFIX + "&cStatistics not available!"));
+            return;
+        }
+        
+        PlayerCatchStats stats = catchStats.getPlayerStats(target.getUniqueId());
+        String rarestCatch = catchStats.getRarestCatch(target.getUniqueId());
+        
+        String headerName = target.equals(sender) ? "Fishing Statistics" : target.getName() + "'s Stats";
+        
+        sender.sendMessage(MessageUtils.color("&3\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550"));
+        sender.sendMessage(MessageUtils.color("  &b\uD83D\uDC1F " + headerName));
+        sender.sendMessage(MessageUtils.color("&3\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550"));
+        sender.sendMessage(MessageUtils.color("  &7Total Catches: &b" + stats.getTotalCatches()));
+        sender.sendMessage(MessageUtils.color("  &7Fish Discovered: &b" + stats.getUniqueDiscovered() + 
+                "&7/&b" + stats.getTotalRewards() + 
+                " &7(" + String.format("%.1f%%", stats.getDiscoveryPercentage()) + ")"));
+        sender.sendMessage("");
+        sender.sendMessage(MessageUtils.color("  &7By Rarity:"));
+        
+        Map<String, Integer> byRarity = stats.getCatchesByRarity();
+        for (String rarity : rarities) {
+            int count = byRarity.containsKey(rarity) ? byRarity.get(rarity) : 0;
+            sender.sendMessage(MessageUtils.color("    " + MessageUtils.getRarityColor(rarity) + 
+                    "\u25C6 " + rarity.charAt(0) + rarity.substring(1).toLowerCase() + ": &f" + count));
+        }
+        
+        if (rarestCatch != null) {
+            sender.sendMessage("");
+            sender.sendMessage(MessageUtils.color("  &7Rarest Catch: &b" + rarestCatch));
+        }
+        
+        sender.sendMessage(MessageUtils.color("&3\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550"));
+    }
+    
+    /**
+     * Handle top command — show fishing leaderboard (async)
+     */
+    private void handleTop(final CommandSender sender) {
+        if (!sender.hasPermission("warzonefishing.top")) {
+            sender.sendMessage(MessageUtils.color(MessageUtils.PREFIX + "&cNo permission!"));
+            return;
+        }
+        
+        final CatchStatistics catchStats = plugin.getCatchStatistics();
+        if (catchStats == null) {
+            sender.sendMessage(MessageUtils.color(MessageUtils.PREFIX + "&cStatistics not available!"));
+            return;
+        }
+        
+        sender.sendMessage(MessageUtils.color(MessageUtils.PREFIX + "&7Loading leaderboard..."));
+        
+        // Run async to prevent blocking
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                final List<CatchStatistics.LeaderboardEntry> topFishers = catchStats.getTopFishers(10);
+                
+                // Send results on main thread
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        sender.sendMessage(MessageUtils.color("&3\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550"));
+                        sender.sendMessage(MessageUtils.color("  &6\uD83C\uDFC6 Top Fishers"));
+                        sender.sendMessage(MessageUtils.color("&3\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550"));
+                        
+                        if (topFishers.isEmpty()) {
+                            sender.sendMessage(MessageUtils.color("  &7No catches recorded yet!"));
+                        } else {
+                            for (int i = 0; i < topFishers.size(); i++) {
+                                CatchStatistics.LeaderboardEntry entry = topFishers.get(i);
+                                String rankColor = i == 0 ? "&6" : i == 1 ? "&f" : i == 2 ? "&c" : "&7";
+                                sender.sendMessage(MessageUtils.color("  " + rankColor + (i + 1) + ". &b" + 
+                                        entry.getName() + " &7\u2014 &f" + entry.getTotalCatches() + " catches"));
+                            }
+                        }
+                        
+                        sender.sendMessage(MessageUtils.color("&3\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550"));
+                    }
+                }.runTask(plugin);
+            }
+        }.runTaskAsynchronously(plugin);
+    }
+    
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
@@ -405,6 +523,12 @@ public class WarzoneFishingCommand implements CommandExecutor, TabCompleter {
             if (subCommand.equals("list")) {
                 // Rarity filter
                 completions = rarities.stream()
+                        .filter(s -> s.toLowerCase().startsWith(partial))
+                        .collect(Collectors.toList());
+            } else if (subCommand.equals("stats")) {
+                // Online players for stats lookup
+                completions = Bukkit.getOnlinePlayers().stream()
+                        .map(Player::getName)
                         .filter(s -> s.toLowerCase().startsWith(partial))
                         .collect(Collectors.toList());
             } else if (subCommand.equals("give")) {

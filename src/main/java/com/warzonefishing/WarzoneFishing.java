@@ -5,6 +5,7 @@ import com.warzonefishing.gui.FishingGUI;
 import com.warzonefishing.hooks.HeadHuntingHook;
 import com.warzonefishing.listeners.FishingListener;
 import com.warzonefishing.managers.RewardManager;
+import com.warzonefishing.stats.CatchStatistics;
 import com.warzonefishing.utils.MessageUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,6 +27,7 @@ public class WarzoneFishing extends JavaPlugin {
     private RewardManager rewardManager;
     private FishingGUI fishingGUI;
     private HeadHuntingHook headHuntingHook;
+    private CatchStatistics catchStatistics;
     
     @Override
     public void onEnable() {
@@ -37,6 +39,9 @@ public class WarzoneFishing extends JavaPlugin {
         // Initialize the reward manager and load rewards
         rewardManager = new RewardManager(this);
         rewardManager.loadRewards();
+        
+        // Initialize catch statistics (SQLite)
+        catchStatistics = new CatchStatistics(this);
         
         // Initialize GUI manager
         fishingGUI = new FishingGUI(this);
@@ -64,6 +69,9 @@ public class WarzoneFishing extends JavaPlugin {
     
     @Override
     public void onDisable() {
+        if (catchStatistics != null) {
+            catchStatistics.shutdown();
+        }
         getLogger().info("WarzoneFishing has been disabled!");
         instance = null;
     }
@@ -121,6 +129,14 @@ public class WarzoneFishing extends JavaPlugin {
      */
     public HeadHuntingHook getHeadHuntingHook() {
         return headHuntingHook;
+    }
+    
+    /**
+     * Get the catch statistics tracker
+     * @return CatchStatistics instance
+     */
+    public CatchStatistics getCatchStatistics() {
+        return catchStatistics;
     }
     
     /**

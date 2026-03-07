@@ -3,10 +3,12 @@ package com.warzonefishing.listeners;
 import com.warzonefishing.WarzoneFishing;
 import com.warzonefishing.hooks.HeadHuntingHook;
 import com.warzonefishing.models.FishingReward;
+import com.warzonefishing.stats.CatchStatistics;
 import com.warzonefishing.utils.MessageUtils;
 import com.warzonefishing.utils.TitleAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Fish;
 import org.bukkit.entity.Item;
@@ -175,8 +177,30 @@ public class FishingListener implements Listener {
             broadcastMessage(player, reward, rewardItem);
         }
         
+        // Record catch in statistics
+        recordCatchStatistics(player, reward);
+        
         // Send action bar if configured
         sendActionBar(player, reward, rewardItem);
+    }
+    
+    /**
+     * Record a catch in the statistics database and send a discovery message
+     * if this is the player's first time catching this reward.
+     */
+    private void recordCatchStatistics(Player player, FishingReward reward) {
+        CatchStatistics stats = plugin.getCatchStatistics();
+        if (stats == null) return;
+        
+        boolean isNew = stats.recordCatch(player.getUniqueId(), reward.getId(), reward.getRarity());
+        
+        // Send discovery message on first-time catch
+        if (isNew) {
+            String itemName = reward.getItemDisplayName();
+            player.sendMessage(MessageUtils.color(
+                    MessageUtils.PREFIX + "&3&l\u2726 NEW DISCOVERY! &7You caught your first &b" + itemName + "&7!"));
+            player.playSound(player.getLocation(), Sound.ORB_PICKUP, 1.0f, 1.2f);
+        }
     }
     
     /**
